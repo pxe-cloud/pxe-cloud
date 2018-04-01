@@ -8,7 +8,7 @@ import yaml
 
 # Read the settings
 def read_settings(key=None):
-    with open(os.path.abspath("../settings.yml")) as file:
+    with open(os.path.abspath("settings.yml")) as file:
         settings = yaml.safe_load(file)
 
     if key:
