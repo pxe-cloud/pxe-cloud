@@ -60,7 +60,7 @@ def generate_files():
     if args.port:
         response["api_port"] = args.port
     else:
-        response["api_port"] = "0.0.0.0"
+        response["api_port"] = "5000"
 
     if args.base_url:
         response["base_url"] = args.base_url
@@ -69,7 +69,7 @@ def generate_files():
 
     with open("../settings.yml", "w+") as f:
         to_write = {"network": {"host_ip": response["host_ip"], "api_port": response["api_port"]}, "api": {"base_url": response["base_url"]}}
-        yaml.dump(to_write, f)
+        yaml.dump(to_write, f, default_flow_style=False)
 
 
 # Run the functions
