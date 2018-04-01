@@ -60,7 +60,7 @@ def generate_files():
     if args.port:
         response["api_port"] = args.port
     else:
-        response["api_port"] = "5000"
+        response["api_port"] = 5000
 
     if args.base_url:
         response["base_url"] = args.base_url
