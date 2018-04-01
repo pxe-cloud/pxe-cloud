@@ -1,0 +1,12 @@
+aniso8601==2.0.0
+click==6.7
+Flask==0.12.2
+Flask-Cors==3.0.3
+Flask-RESTful==0.3.6
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+pytz==2018.3
+PyYAML==3.12
+six==1.11.0
+Werkzeug==0.14.1
