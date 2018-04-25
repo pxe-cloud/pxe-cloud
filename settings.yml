@@ -1,8 +1,8 @@
 # Network Settings
 network:
   host_ip: 0.0.0.0
-  api_port: 5000
+  api_port: 8001
 
 # API settings
 api:
-  base_url: "/api"
+  base_url: "/"
