@@ -10,3 +10,4 @@ pytz==2018.3
 PyYAML==3.12
 six==1.11.0
 Werkzeug==0.14.1
+rethinkdb==2.3.0.post6
