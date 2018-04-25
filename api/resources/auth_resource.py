@@ -4,6 +4,7 @@
 # Imports
 from flask import Response
 from flask_restful import Resource, reqparse
+from api.methods.authentication_methods import check_auth
 
 
 # Auth resource
@@ -20,6 +21,11 @@ class Auth(Resource):
         parser.add_argument("password", type=str, help="This is the password of the user")
         args = parser.parse_args()
 
-        return Response("""#!ipxe
+        if check_auth(args):
+            return Response("""#!ipxe
+echo Successfully logged in!""")
+
+        else:
+            return Response("""#!ipxe
 login
 chain http://api.pxecloud.tk/auth?username=${username:uristring}&password=${password:uristring}""", mimetype="text/html")
