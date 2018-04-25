@@ -6,3 +6,9 @@ network:
 # API settings
 api:
   base_url: "/"
+
+# RethinkDB Settings
+rethinkdb:
+  host: 0.0.0.0
+  port: 28015
+  db_name: pxecloud
