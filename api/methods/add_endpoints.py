@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Imports
+# Methods imports
 from api.methods.files_methods import read_settings
 
 # Resources imports

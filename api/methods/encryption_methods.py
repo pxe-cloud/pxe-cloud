@@ -5,6 +5,7 @@
 import rethinkdb as r
 import bcrypt
 
+# Methods imports
 from api.methods.files_methods import read_settings
 from api.methods.rethinkdb_methods import connect
 
