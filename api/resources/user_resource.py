@@ -6,6 +6,7 @@ from flask_restful import Resource, reqparse
 import rethinkdb as r
 from api.methods.files_methods import read_settings
 from api.methods.rethinkdb_methods import connect
+from api.methods.encryption_methods import encrypt_password
 
 
 # User resource
@@ -41,7 +42,7 @@ class User(Resource):
         connect(r)
         result = r.db(rethink_settings["db_name"]).table("users").insert([{
             "username": username,
-            "password": args["password"],
+            "password": encrypt_password(args["password"]),
             "organizations": [args["organization"]],
             "groups": [args["group"]]
         }]).run()
@@ -67,7 +68,11 @@ class User(Resource):
         to_update = {}
         for arg, value in args.items():
             if value:
-                to_update[arg] = value
+                if arg == "password":
+                    to_update[arg] = encrypt_password(value)
+
+                else:
+                    to_update[arg] = value
 
         rethink_settings = read_settings("rethinkdb")
         connect(r)
