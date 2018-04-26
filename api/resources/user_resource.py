@@ -4,6 +4,8 @@
 # Imports
 from flask_restful import Resource, reqparse
 import rethinkdb as r
+
+# Methods imports
 from api.methods.files_methods import read_settings
 from api.methods.rethinkdb_methods import connect
 from api.methods.encryption_methods import encrypt_password

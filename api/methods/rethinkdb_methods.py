@@ -3,6 +3,8 @@
 
 # Imports
 import rethinkdb as r
+
+# Methods imports
 from api.methods.files_methods import read_settings
 
 # Read the settings related to RethinkDB
