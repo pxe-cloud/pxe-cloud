@@ -3,16 +3,15 @@
 
 # Imports
 import rethinkdb as r
-from api.methods.files_methods import read_settings
-from api.methods.rethinkdb_methods import connect
+from api.decorators.rethinkdb_decorators import rethinkdb_connection
+
 
 # Check if an user and a password are correct
-def check_auth(args):
-    rethink_settings = read_settings("rethinkdb")
-    connect(r)
+@rethinkdb_connection
+def check_auth(conn, args):
 
     # Get the user
-    users = r.db(rethink_settings["db_name"]).table("users").filter(r.row["username"] == args["username"]).run()
+    users = r.table("users").filter(r.row["username"] == args["username"]).run(conn)
 
     # Loop through the cursor to get the user (and check if the user works)
     for user in users:
