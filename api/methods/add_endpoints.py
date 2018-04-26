@@ -13,5 +13,5 @@ from api.resources.users_resource import Users
 def add_endpoints(api):
     root = read_settings("api")["base_url"]
     api.add_resource(Auth, f"{root}auth")
-    api.add_resource(Users, f"{users}")
+    api.add_resource(Users, f"{root}users")
     api.add_resource(User, f"{root}user/<username>")

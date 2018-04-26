@@ -47,7 +47,7 @@ class Users(Resource):
         }]).run()
 
         if result["inserted"] == 1:
-            return {"response": "Successfully created the user!"}, 201, {"Location": f"/user/{result['generated_keys'][0]}"}
+            return {"response": "Successfully created the user!"}, 201, {"Location": f"/user/{args['username']}"}
 
         else:
             return {"response": "Error 409! The user already exists!"}, 409
