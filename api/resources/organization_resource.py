@@ -51,7 +51,7 @@ class Organization(Resource):
             return {"response": "Successfully updated the organization!"}, 200
 
         elif result["unchanged"] == 1:
-            return {"response": "Error 204! Please make changes!"}, 204
+            return {"response": "Error 400! Please make some changes!"}, 400
 
         else:
             return {"response": "Error 404! Organization not found!"}, 404
