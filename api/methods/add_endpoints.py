@@ -8,6 +8,8 @@ from api.methods.files_methods import read_settings
 from api.resources.auth_resource import Auth
 from api.resources.user_resource import User
 from api.resources.users_resource import Users
+from api.resources.organizations_resource import Organizations
+from api.resources.organization_resource import Organization
 
 # Add all the endpoints to the API
 def add_endpoints(api):
@@ -15,3 +17,5 @@ def add_endpoints(api):
     api.add_resource(Auth, f"{root}auth")
     api.add_resource(Users, f"{root}users")
     api.add_resource(User, f"{root}user/<username>")
+    api.add_resource(Organizations, f"{root}organizations")
+    api.add_resource(Organization, f"{root}organization/<organization_id>")
