@@ -8,7 +8,7 @@ from api.decorators.rethinkdb_decorators import rethinkdb_connection
 
 # Check if an user and a password are correct
 @rethinkdb_connection
-def check_auth(conn, args):
+def check_auth(args, conn):
 
     # Get the user
     users = r.table("users").filter(r.row["username"] == args["username"]).run(conn)

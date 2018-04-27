@@ -12,23 +12,12 @@ def rethinkdb_connection(f):
     def wrapper(*args, **kwargs):
         conn = connect()
 
-        for arg in args:
-            print(arg)
-
         # Execute the rest of the code
-        print(type(args[0]))
-        if type(args[0]) == dict:
-            result = f(conn, *args, **kwargs)
-
-        else:
-            for index, vaule in enumerate(args[0]):
-                print(index, vaule)
-            # result = f(self, conn, **kwargs)
         try:
-            pass
+            result = f(*args, conn=conn, **kwargs)
 
         except():
-            return {"message": "Internal Server Error!"}, 500
+            return {"response": "Error 503! The database is unaccessible!"}, 503
 
         close(conn)
 
