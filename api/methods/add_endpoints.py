@@ -6,8 +6,8 @@ from api.methods.files_methods import read_settings
 
 # Resources imports
 from api.resources.auth_resource import Auth
-from api.resources.user_resource import User
 from api.resources.users_resource import Users
+from api.resources.user_resource import User
 from api.resources.organizations_resource import Organizations
 from api.resources.organization_resource import Organization
 
