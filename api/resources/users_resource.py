@@ -5,9 +5,10 @@
 from flask_restful import Resource, reqparse
 import rethinkdb as r
 
+# Decorators imports
+from api.decorators.rethinkdb_decorators import rethinkdb_connection
+
 # Methods imports
-from api.methods.files_methods import read_settings
-from api.methods.rethinkdb_methods import connect
 from api.methods.encryption_methods import encrypt_password
 
 
@@ -15,18 +16,18 @@ from api.methods.encryption_methods import encrypt_password
 class Users(Resource):
 
     # GET
-    def get(self):
+    @rethinkdb_connection
+    def get(self, conn):
         """
         Return all the existing users
         """
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        users = r.db(rethink_settings["db_name"]).table("users").run()
+        users = r.table("users").run(conn)
 
         return {"response": [user for user in users]}, 200
 
     # POST
-    def post(self):
+    @rethinkdb_connection
+    def post(self, conn):
         """
         Create a new user
         """
@@ -37,14 +38,12 @@ class Users(Resource):
         parser.add_argument("group", type=str, help="This is the group that the user is going to be on")
         args = parser.parse_args()
 
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        result = r.db(rethink_settings["db_name"]).table("users").insert([{
+        result = r.table("users").insert([{
             "username": args["username"],
             "password": encrypt_password(args["password"]),
             "organizations": [args["organization"]],
             "groups": [args["group"]]
-        }]).run()
+        }]).run(conn)
 
         if result["inserted"] == 1:
             return {"response": "Successfully created the user!"}, 201, {"Location": f"/user/{args['username']}"}

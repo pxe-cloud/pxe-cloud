@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
+# Add optional args to a decorator
 def optional_args_decorator(f):
     def wrapped_decorator(*args):
         if len(args) == 1 and callable(args[0]):

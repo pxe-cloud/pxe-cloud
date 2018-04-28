@@ -5,19 +5,16 @@
 import rethinkdb as r
 import bcrypt
 
-# Methods imports
-from api.methods.files_methods import read_settings
-from api.methods.rethinkdb_methods import connect
+# Decorators imports
+from api.decorators.rethinkdb_decorators import rethinkdb_connection
 
 
 # Check if an user and a password are correct
-def check_auth(args):
-    rethink_settings = read_settings("rethinkdb")
-    connect(r)
-
+@rethinkdb_connection
+def check_auth(args, conn):
     # Get the user
     if args["username"] and args["password"]:
-        user = r.db(rethink_settings["db_name"]).table("users").get(args["username"]).run()
+        user = r.table("users").get(args["username"]).run(conn)
 
         # Check if the user exists
         if user:

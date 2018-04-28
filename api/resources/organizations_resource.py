@@ -5,25 +5,26 @@
 from flask_restful import Resource, reqparse
 import rethinkdb as r
 
-# Methods imports
-from api.methods.files_methods import read_settings
-from api.methods.rethinkdb_methods import connect
+# Decorators imports
+from api.decorators.rethinkdb_decorators import rethinkdb_connection
+
 
 # Organization resource
 class Organizations(Resource):
+
     # GET
-    def get(self):
+    @rethinkdb_connection
+    def get(self, conn):
         """
         Return all the existing organizations
         """
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        organizations = r.db(rethink_settings["db_name"]).table("organizations").run()
+        organizations = r.table("organizations").run(conn)
 
         return {"response": [organization for organization in organizations]}, 200
 
     # POST
-    def post(self):
+    @rethinkdb_connection
+    def post(self, conn):
         """
         Create a new organization
         """
@@ -32,13 +33,11 @@ class Organizations(Resource):
         parser.add_argument("description", type=str, help="This is a small description of the organization")
         args = parser.parse_args()
 
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        result = r.db(rethink_settings["db_name"]).table("organizations").insert([{
+        result = r.table("organizations").insert([{
             "name": args["name"],
             "description": args["description"],
             "groups": []
-        }]).run()
+        }]).run(conn)
 
         if result["inserted"] == 1:
             return {"response": "Successfully created the organization!"}, 201, {"Location": f"/organization/{result['generated_keys'][0]}"}
