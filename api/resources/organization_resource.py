@@ -5,21 +5,20 @@
 from flask_restful import Resource, reqparse
 import rethinkdb as r
 
-# Methods imports
-from api.methods.files_methods import read_settings
-from api.methods.rethinkdb_methods import connect
+# Decorators imports
+from api.decorators.rethinkdb_decorators import rethinkdb_connection
+
 
 # Organization resource
 class Organization(Resource):
 
     # GET
-    def get(self, organization_id):
+    @rethinkdb_connection
+    def get(self, organization_id, conn):
         """
         Get a specific organization using an id
         """
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        organization = r.db(rethink_settings["db_name"]).table("organizations").get(organization_id).run()
+        organization = r.table("organizations").get(organization_id).run(conn)
 
         if organization:
             return {"response": organization}, 200
@@ -28,7 +27,8 @@ class Organization(Resource):
             return {"response": "Error 404! The organization wasn't found!"}, 404
 
     # PUT
-    def put(self, organization_id):
+    @rethinkdb_connection
+    def put(self, organization_id, conn):
         """
         Update an existing organization using the ID
         """
@@ -43,9 +43,7 @@ class Organization(Resource):
             if value:
                 to_update[arg] = value
 
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        result = r.db(rethink_settings["db_name"]).table("organizations").get(organization_id).update(to_update).run()
+        result = r.table("organizations").get(organization_id).update(to_update).run(conn)
 
         if result["replaced"] == 1:
             return {"response": "Successfully updated the organization!"}, 200
@@ -57,13 +55,12 @@ class Organization(Resource):
             return {"response": "Error 404! Organization not found!"}, 404
 
     # DELETE
-    def delete(self, organization_id):
+    @rethinkdb_connection
+    def delete(self, organization_id, conn):
         """
         Delete an existing organization using the ID
         """
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        result = r.db(rethink_settings["db_name"]).table("organizations").get(organization_id).delete().run()
+        result = r.table("organizations").get(organization_id).delete().run(conn)
 
         if result["deleted"] == 1:
             return {"response": "Successfully deleted the organization!"}, 200

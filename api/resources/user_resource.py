@@ -5,9 +5,10 @@
 from flask_restful import Resource, reqparse
 import rethinkdb as r
 
+# Decorators imports
+from api.decorators.rethinkdb_decorators import rethinkdb_connection
+
 # Methods imports
-from api.methods.files_methods import read_settings
-from api.methods.rethinkdb_methods import connect
 from api.methods.encryption_methods import encrypt_password
 
 
@@ -15,13 +16,12 @@ from api.methods.encryption_methods import encrypt_password
 class User(Resource):
 
     # GET
-    def get(self, username):
+    @rethinkdb_connection
+    def get(self, username, conn):
         """
         Get a specific user using the username
         """
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        user = r.db(rethink_settings["db_name"]).table("users").get(username).run()
+        user = r.table("users").get(username).run(conn)
 
         if user:
             return {"response": user}, 200
@@ -30,7 +30,8 @@ class User(Resource):
             return {"response": "Error 404! The user wasn't found!"}, 404
 
     # PUT
-    def put(self, username):
+    @rethinkdb_connection
+    def put(self, username, conn):
         """
         Update an existing user using the username
         """
@@ -50,9 +51,7 @@ class User(Resource):
                 else:
                     to_update[arg] = value
 
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        result = r.db(rethink_settings["db_name"]).table("users").get(username).update(to_update).run()
+        result = r.table("users").get(username).update(to_update).run(conn)
 
         if result["replaced"] == 1:
             return {"response": "Successfully updated the user!"}, 200
@@ -65,13 +64,12 @@ class User(Resource):
 
 
     # DELETE
-    def delete(self, username):
+    @rethinkdb_connection
+    def delete(self, username, conn):
         """
         Delete an existing user using the username
         """
-        rethink_settings = read_settings("rethinkdb")
-        connect(r)
-        result = r.db(rethink_settings["db_name"]).table("users").get(username).delete().run()
+        result = r.table("users").get(username).delete().run(conn)
 
         if result["deleted"] == 1:
             return {"response": "Successfully deleted the user!"}, 200
