@@ -11,6 +11,7 @@ from api.resources.user_resource import User
 from api.resources.organizations_resource import Organizations
 from api.resources.organization_resource import Organization
 from api.resources.groups_resource import Groups
+from api.resources.group_resource import Group
 
 
 # Add all the endpoints to the API
@@ -22,3 +23,5 @@ def add_endpoints(api):
     api.add_resource(Organizations, f"{root}organizations")
     api.add_resource(Organization, f"{root}organization/<organization_id>")
     api.add_resource(Groups, f"{root}groups")
+    api.add_resource(Group, f"{root}group/<group_id>")
+
