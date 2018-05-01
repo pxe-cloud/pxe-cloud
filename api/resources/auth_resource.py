@@ -17,7 +17,7 @@ class Auth(Resource):
 set username
 set password
 login
-chain http://10.252.1.10:8001/auth?username=${username:uristring}&password=${password:uristring}""")
+chain http://api.pxecloud.tk/auth?username=${username:uristring}&password=${password:uristring}""")
     def get(self):
         """
         Try to authenticate an user. If the authentication is successful, it returns a user menu. If not, it returns a login menu
