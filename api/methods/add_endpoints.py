@@ -12,6 +12,7 @@ from api.resources.organizations_resource import Organizations
 from api.resources.organization_resource import Organization
 from api.resources.groups_resource import Groups
 from api.resources.group_resource import Group
+from api.resources.menus_resource import Menus
 
 
 # Add all the endpoints to the API
@@ -24,4 +25,4 @@ def add_endpoints(api):
     api.add_resource(Organization, f"{root}organization/<organization_id>")
     api.add_resource(Groups, f"{root}groups")
     api.add_resource(Group, f"{root}group/<group_id>")
-
+    api.add_resource(Menus, f"{root}menus")
