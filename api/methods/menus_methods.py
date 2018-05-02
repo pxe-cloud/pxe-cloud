@@ -16,22 +16,13 @@ from api.methods.strings_methods import normalize_string
 @authorized
 @rethinkdb_connection
 def generate_menu(menu_id, username, password, conn):
-    menu = {"title": "Menú instalación Linux", "background": "", "entries": [
-        {"position": 1, "type": "image", "image_type": "iso", "title": "Debian 9 ISO", "image_source": "url", "boot_args": ""},
-        {"position": 3, "type": "image", "image_type": "kernel_initrd", "title": "Fedora 28", "kernel": "url_kernel", "initrd": "url_initrd", "repo": "url_repo"},
-        {"position": 0, "type": "separator", "content": "Isos"}
-    ]}
+    menu = r.table("menus").get(menu_id).run(conn)
 
     raw_menu = "#!ipxe\n"
     entries_menu = ""
 
     if menu["background"]:
-        # APLICAR
-        pass
-
-    else:
-        pass
-        # DEFAULT
+        raw_menu += f"console --x 1024 --y 576 --picture {menu['background']} --left 50 --right 50 --top 30 --bottom 30"
 
     raw_menu += f"set username={username}\n"
     raw_menu += f"set password={password}\n"
