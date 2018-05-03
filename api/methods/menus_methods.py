@@ -42,5 +42,4 @@ def generate_menu(username, password, menu_title, items_to_add, entries_to_add, 
     raw_menu += "choose target && goto ${target}\n"
     raw_menu += entries_menu
 
-    print(raw_menu)
     return raw_menu

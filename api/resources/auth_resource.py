@@ -3,7 +3,7 @@
 
 # Imports
 from flask import Response
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 
 # Decorators imports
 from api.decorators.authentication_decorators import authorized
@@ -22,7 +22,14 @@ chain http://api.pxecloud.tk/auth?username=${username:uristring}&password=${pass
         """
         Try to authenticate an user. If the authentication is successful, it returns a user menu. If not, it returns a login menu
         """
-        return Response("""#!ipxe
-set username nefix
-set password 1234
-chain http://api.pxecloud.tk/boot/${username:uristring}?username=${username:uristring}&password=${password:uristring}""", mimetype="text/plain")
+        parser = reqparse.RequestParser()
+        parser.add_argument("username", type=str, help="This is the username of the user")
+        parser.add_argument("password", type=str, help="This is the password of the user")
+        args = parser.parse_args()
+
+        return_script = "#!ipxe\n"
+        return_script += f"set username {args['username']}\n"
+        return_script += f"set password {args['password']}\n"
+        return_script += "chain http://api.pxecloud.tk/boot/${username:uristring}?username=${username:uristring}&password=${password:uristring}\n"
+
+        return Response(return_script, mimetype="text/plain")
