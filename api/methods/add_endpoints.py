@@ -12,6 +12,9 @@ from api.resources.organizations_resource import Organizations
 from api.resources.organization_resource import Organization
 from api.resources.groups_resource import Groups
 from api.resources.group_resource import Group
+from api.resources.boot.organizations_script_resource import OrganizationsScript
+from api.resources.boot.groups_script_resource import GroupsScript
+from api.resources.boot.menu_script_resource import MenuScript
 
 
 # Add all the endpoints to the API
@@ -24,4 +27,6 @@ def add_endpoints(api):
     api.add_resource(Organization, f"{root}organization/<organization_id>")
     api.add_resource(Groups, f"{root}groups")
     api.add_resource(Group, f"{root}group/<group_id>")
-
+    api.add_resource(OrganizationsScript, f"{root}boot/<username>")
+    api.add_resource(GroupsScript, f"{root}boot/<username>/<organization_id>")
+    api.add_resource(MenuScript, f"{root}boot/<username>/<organization_id>/<group_id>")
