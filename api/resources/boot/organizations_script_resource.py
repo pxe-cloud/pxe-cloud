@@ -13,6 +13,7 @@ from api.decorators.rethinkdb_decorators import rethinkdb_connection
 # Methods imports
 from api.methods.strings_methods import normalize_string
 from api.methods.menus_methods import generate_menu
+from api.methods.files_methods import read_settings
 
 
 # Organizations Script resource
@@ -28,6 +29,10 @@ class OrganizationsScript(Resource):
 
         user = r.table("users").get(username).run(conn)
 
+        api_settings = read_settings('api')
+        protocol = api_settings['protocol']
+        domain_name = api_settings['domain_name']
+
         if len(user["organizations"]) > 1:
             raw_menu = "item --gap -- ---- Organizations ----\n"
             entries_menu = ""
@@ -39,11 +44,11 @@ class OrganizationsScript(Resource):
                 raw_menu += f"item {normalized_name} {organization['name']} -->\n"
 
                 entries_menu += f":{normalized_name}\n"
-                entries_menu += f"chain http://api.pxecloud.tk/boot/{username}/{organization_id}" + "?username=${username:uristring}&password=${password:uristring}\n"
+                entries_menu += f"chain {protocol}://{domain_name}/boot/{username}/{organization_id}" + "?username=${username:uristring}&password=${password:uristring}\n"
 
             ipxe_script = generate_menu(username, args['password'], "Choose organization", raw_menu, entries_menu)
 
         else:
-            ipxe_script = f"#!ipxe\nset username={username}\nset password={args['password']}\nchain http://api.pxecloud.tk/boot/{username}/{user['organizations'][0]}" + "?username=${username:uristring}&password=${password:uristring}\n"
+            ipxe_script = f"#!ipxe\nset username={username}\nset password={args['password']}\nchain {protocol}://{domain_name}/boot/{username}/{user['organizations'][0]}" + "?username=${username:uristring}&password=${password:uristring}\n"
 
         return Response(ipxe_script, mimetype="text/plain")
