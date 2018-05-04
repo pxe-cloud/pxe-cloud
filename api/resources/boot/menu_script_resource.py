@@ -13,6 +13,7 @@ from api.decorators.rethinkdb_decorators import rethinkdb_connection
 # Methods imports
 from api.methods.strings_methods import normalize_string
 from api.methods.menus_methods import generate_menu
+from api.methods.files_methods import read_settings
 
 
 # Menu Script resource
@@ -42,9 +43,9 @@ class MenuScript(Resource):
 
                 if entry["image_type"] == "iso":
                     entries_menu += f":{normalized_title}\n"
-                    entries_menu += f"kernel #TODO: #\n"
+                    entries_menu += f"kernel http://{read_settings('api')['domain_name']}/boot/{username}/{organization_id}/{group_id}/memdisk" + "?username=${username:uristring}&password=${password:uristring}\n"
                     entries_menu += f"initrd {entry['image_source']}\n"
-                    entries_menu += f"imgargs memdisk iso raw {' '.join([arg for arg in entry['boot_args']])}|| read void\n"
+                    entries_menu += f"imgargs memdisk iso raw {' '.join([arg for arg in entry['boot_args']])}\n"
 
                 if entry["image_type"] == "kernel_initrd":
                     entries_menu += f":{normalized_title}\n"

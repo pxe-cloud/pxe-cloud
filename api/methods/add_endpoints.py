@@ -15,6 +15,7 @@ from api.resources.group_resource import Group
 from api.resources.boot.organizations_script_resource import OrganizationsScript
 from api.resources.boot.groups_script_resource import GroupsScript
 from api.resources.boot.menu_script_resource import MenuScript
+from api.resources.boot.return_image_resource import ReturnImage
 
 
 # Add all the endpoints to the API
@@ -30,3 +31,4 @@ def add_endpoints(api):
     api.add_resource(OrganizationsScript, f"{root}boot/<username>")
     api.add_resource(GroupsScript, f"{root}boot/<username>/<organization_id>")
     api.add_resource(MenuScript, f"{root}boot/<username>/<organization_id>/<group_id>")
+    api.add_resource(ReturnImage, f"{root}boot/<username>/<organization_id>/<group_id>/<image_id>")
