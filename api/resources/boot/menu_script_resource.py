@@ -51,7 +51,7 @@ class MenuScript(Resource):
                     entries_menu += f"initrd {entry['image_source']}\n"
                     entries_menu += f"imgargs memdisk iso raw {' '.join([arg for arg in entry['boot_args']])}\n"
 
-                if entry["image_type"] == "kernel_initrd":
+                elif entry["image_type"] == "kernel_initrd":
                     entries_menu += f":{normalized_title}\n"
 
                     if "repo" in entry:
@@ -61,6 +61,7 @@ class MenuScript(Resource):
                         entries_menu += f"kernel {entry['kernel']}\n"
 
                     entries_menu += f"initrd {entry['initrd']}\n"
+
                 entries_menu += "boot\n"
 
         ipxe_script = generate_menu(username, args["password"], menu["title"], raw_menu, entries_menu, menu["background"])
