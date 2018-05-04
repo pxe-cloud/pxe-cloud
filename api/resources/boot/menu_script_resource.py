@@ -27,7 +27,7 @@ class MenuScript(Resource):
         parser.add_argument("password", type=str, help="This is the password of the user")
         args = parser.parse_args()
 
-        menu_id = r.table("groups").get(group_id).run(conn)["menu"]
+        menu_id = r.table("groups").get(group_id).run(conn)["menu_id"]
         menu = r.table("menus").get(menu_id).run(conn)
 
         api_settings = read_settings('api')
@@ -39,30 +39,33 @@ class MenuScript(Resource):
 
         for entry in sorted(menu["entries"], key=lambda item: item["position"]):
             if entry["type"] == "separator":
-                raw_menu += f"item\nitem --gap {entry['content']}\n"
+                raw_menu += f"item\nitem --gap -- ---- {entry['content']} ----\n"
 
             elif entry["type"] == "image":
-                normalized_title = normalize_string(entry['title'])
-                raw_menu += f"item {normalized_title} {entry['title']} -->\n"
+                image = r.table("images").get(entry["image_id"]).run(conn)
+                normalized_title = normalize_string(image["title"])
 
-                if entry["image_type"] == "iso":
+                raw_menu += f"item {normalized_title} {image['title']} -->\n"
+
+                if image["type"] == "iso":
                     entries_menu += f":{normalized_title}\n"
                     entries_menu += f"kernel {protocol}://{domain_name}/boot/{username}/{organization_id}/{group_id}/memdisk" + "?username=${username:uristring}&password=${password:uristring}\n"
-                    entries_menu += f"initrd {entry['image_source']}\n"
-                    entries_menu += f"imgargs memdisk iso raw {' '.join([arg for arg in entry['boot_args']])}\n"
+                    entries_menu += f"initrd {image['image_source']}\n"
+                    entries_menu += f"imgargs memdisk iso raw {' '.join([arg for arg in image['boot_args']])}\n"
 
-                elif entry["image_type"] == "kernel_initrd":
+                elif image["type"] == "kernel_initrd":
                     entries_menu += f":{normalized_title}\n"
 
-                    if "repo" in entry:
-                        entries_menu += f"kernel {entry['kernel']} repo={entry['repo']}\n"
+                    if "repository_url" in image:
+                        entries_menu += f"kernel {image['kernel_source']} repo={image['repository_url']}\n"
 
                     else:
-                        entries_menu += f"kernel {entry['kernel']}\n"
+                        entries_menu += f"kernel {image['kernel_source']}\n"
 
-                    entries_menu += f"initrd {entry['initrd']}\n"
+                    entries_menu += f"initrd {image['image_source']}\n"
 
                 entries_menu += "boot\n"
 
         ipxe_script = generate_menu(username, args["password"], menu["title"], raw_menu, entries_menu, menu["background"])
+        print(ipxe_script)
         return Response(ipxe_script, mimetype="text/plain")
