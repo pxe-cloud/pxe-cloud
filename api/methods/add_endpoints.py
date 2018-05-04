@@ -11,6 +11,8 @@ from api.resources.organizations_resource import Organizations
 from api.resources.organization_resource import Organization
 from api.resources.groups_resource import Groups
 from api.resources.group_resource import Group
+from api.resources.menus_resource import Menus
+from api.resources.menu_resource import Menu
 from api.resources.boot.auth_resource import BootAuth
 from api.resources.boot.organizations_script_resource import OrganizationsScript
 from api.resources.boot.groups_script_resource import GroupsScript
@@ -27,6 +29,8 @@ def add_endpoints(api):
     api.add_resource(Organization, f"{root}organization/<organization_id>")
     api.add_resource(Groups, f"{root}groups")
     api.add_resource(Group, f"{root}group/<group_id>")
+    api.add_resource(Menus, f"{root}menus")
+    api.add_resource(Menu, f"{root}menu/<menu_id>")
     api.add_resource(BootAuth, f"{root}boot")
     api.add_resource(OrganizationsScript, f"{root}boot/<username>")
     api.add_resource(GroupsScript, f"{root}boot/<username>/<organization_id>")
