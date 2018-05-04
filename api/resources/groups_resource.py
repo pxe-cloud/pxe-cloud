@@ -36,8 +36,7 @@ class Groups(Resource):
         result = r.table("groups").insert([{
             "name": args["name"],
             "description": args["description"],
-            "menus": [],
-            "child": []
+            "menu": ""
         }]).run(conn)
 
         if result["inserted"] == 1:

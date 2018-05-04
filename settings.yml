@@ -6,9 +6,16 @@ network:
 # API settings
 api:
   base_url: "/"
+  domain_name: "api.pxecloud.tk"
 
-# RethinkDB Settings
+# RethinkDB settings
 rethinkdb:
   host: 0.0.0.0
   port: 28015
   db_name: pxecloud
+
+# Storage settings
+storage:
+  # TODO: Image limit size
+  image_limit_size:
+  path: "./images"
