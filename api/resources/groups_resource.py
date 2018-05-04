@@ -31,12 +31,13 @@ class Groups(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("name", type=str, help="This is the name of the group")
         parser.add_argument("description", type=str, help="This is a small description of the group")
+        parser.add_argument("menu_id", type=str, help="This is the id of the menu that the group is going to access")
         args = parser.parse_args()
 
         result = r.table("groups").insert([{
             "name": args["name"],
             "description": args["description"],
-            "menu": ""
+            "menu_id": args["menu_id"]
         }]).run(conn)
 
         if result["inserted"] == 1:
