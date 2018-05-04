@@ -10,14 +10,14 @@ from api.decorators.authentication_decorators import authorized
 
 
 # Auth resource
-class Auth(Resource):
+class BootAuth(Resource):
 
     # GET
     @authorized("""#!ipxe
 set username
 set password
 login
-chain http://api.pxecloud.tk/auth?username=${username:uristring}&password=${password:uristring}""")
+chain http://api.pxecloud.tk/boot?username=${username:uristring}&password=${password:uristring}""")
     def get(self):
         """
         Try to authenticate an user. If the authentication is successful, it returns a user menu. If not, it returns a login menu
