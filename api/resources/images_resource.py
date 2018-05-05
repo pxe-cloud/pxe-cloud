@@ -33,8 +33,6 @@ class Images(Resource):
         parser.add_argument("type", type=str, help="This is the type of the image (iso, kernel_initrd)")
         parser.add_argument("image_source", type=str, help="This is the url (the source) of the image (iso, initramfs)")
         parser.add_argument("kernel_source", type=str, help="This is the url (the source) of the kernel")
-        parser.add_argument("repository_url", type=str, help="This is the url of the repository (needed by Red Hat installers)")
-        parser.add_argument("boot_args", type=str, help="Aditional parameters passsed to the isos when booting")
         args = parser.parse_args()
 
         for key, value in args.items():
@@ -47,7 +45,7 @@ class Images(Resource):
         new_image["image_source"] = args["image_source"]
         new_image["repository_url"] = args["repository_url"]
         new_image["kernel_source"] = args["kernel_source"]
-        new_image["boot_args"] = args["boot_args"]
+        new_image["boot_args"] = []
 
         result = r.table("images").insert([new_image]).run(conn)
 
