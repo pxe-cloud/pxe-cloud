@@ -43,7 +43,6 @@ class Images(Resource):
         new_image["title"] = args["title"]
         new_image["type"] = args["type"]
         new_image["image_source"] = args["image_source"]
-        new_image["repository_url"] = args["repository_url"]
         new_image["kernel_source"] = args["kernel_source"]
         new_image["boot_args"] = []
 

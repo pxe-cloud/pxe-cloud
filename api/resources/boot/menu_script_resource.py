@@ -55,7 +55,9 @@ class MenuScript(Resource):
 
                 elif image["type"] == "kernel_initrd":
                     entries_menu += f":{normalized_title}\n"
-                    entries_menu += f"kernel {image['kernel_source']} {' '.join([key + '=' + value for key, value in image['boot_args'].items()])}\n"
+                    entries_menu += f"kernel {image['kernel_source']} "
+                    entries_menu += f"{' '.join([key + '=' + value for key, value in image['boot_args'].items() if value])} "
+                    entries_menu += f"{' '.join([key for key, value in image['boot_args'].items() if not value])}\n"
                     entries_menu += f"initrd {image['image_source']}\n"
 
                 entries_menu += "boot\n"

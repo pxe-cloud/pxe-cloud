@@ -15,6 +15,8 @@ from api.resources.menus_resource import Menus
 from api.resources.menu_resource import Menu
 from api.resources.images_resource import Images
 from api.resources.image_resource import Image
+from api.resources.images.boot_args_resource import BootArgs
+from api.resources.images.boot_arg_resource import BootArg
 from api.resources.boot.auth_resource import BootAuth
 from api.resources.boot.organizations_script_resource import OrganizationsScript
 from api.resources.boot.groups_script_resource import GroupsScript
@@ -35,6 +37,8 @@ def add_endpoints(api):
     api.add_resource(Menu, f"{root}menu/<menu_id>")
     api.add_resource(Images, f"{root}images")
     api.add_resource(Image, f"{root}image/<image_id>")
+    api.add_resource(BootArgs, f"{root}image/<image_id>/boot-args")
+    api.add_resource(BootArg, f"{root}image/<image_id>/boot-args/<boot_arg>")
     api.add_resource(BootAuth, f"{root}boot")
     api.add_resource(OrganizationsScript, f"{root}boot/<username>")
     api.add_resource(GroupsScript, f"{root}boot/<username>/<organization_id>")
