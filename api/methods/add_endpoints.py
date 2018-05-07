@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Methods imports
-from api.methods.files_methods import read_settings
-
 # Resources imports
 from api.resources.users_resource import Users
 from api.resources.user_resource import User
@@ -24,19 +21,18 @@ from api.resources.boot.return_image_resource import ReturnImage
 
 # Add all the endpoints to the API
 def add_endpoints(api):
-    root = read_settings("api")["base_url"]
-    api.add_resource(Users, f"{root}users")
-    api.add_resource(User, f"{root}user/<username>")
-    api.add_resource(Organizations, f"{root}organizations")
-    api.add_resource(Organization, f"{root}organization/<organization_id>")
-    api.add_resource(Groups, f"{root}groups")
-    api.add_resource(Group, f"{root}group/<group_id>")
-    api.add_resource(Menus, f"{root}menus")
-    api.add_resource(Menu, f"{root}menu/<menu_id>")
-    api.add_resource(Images, f"{root}images")
-    api.add_resource(Image, f"{root}image/<image_id>")
-    api.add_resource(BootAuth, f"{root}boot")
-    api.add_resource(OrganizationsScript, f"{root}boot/<username>")
-    api.add_resource(GroupsScript, f"{root}boot/<username>/<organization_id>")
-    api.add_resource(MenuScript, f"{root}boot/<username>/<organization_id>/<group_id>")
-    api.add_resource(ReturnImage, f"{root}boot/<username>/<organization_id>/<group_id>/<image_id>")
+    api.add_resource(Users, "/users")
+    api.add_resource(User, "/user/<username>")
+    api.add_resource(Organizations, "/organizations")
+    api.add_resource(Organization, "/organization/<organization_id>")
+    api.add_resource(Groups, "/groups")
+    api.add_resource(Group, "/group/<group_id>")
+    api.add_resource(Menus, "/menus")
+    api.add_resource(Menu, "/menu/<menu_id>")
+    api.add_resource(Images, "/images")
+    api.add_resource(Image, "/image/<image_id>")
+    api.add_resource(BootAuth, "/boot")
+    api.add_resource(OrganizationsScript, "/boot/<username>")
+    api.add_resource(GroupsScript, "/boot/<username>/<organization_id>")
+    api.add_resource(MenuScript, "/boot/<username>/<organization_id>/<group_id>")
+    api.add_resource(ReturnImage, "/boot/<username>/<organization_id>/<group_id>/<image_id>")
