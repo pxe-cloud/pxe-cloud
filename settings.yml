@@ -5,8 +5,9 @@ network:
 
 # API settings
 api:
-  base_url: "/"
-  domain_name: "api.pxecloud.tk"
+  base_url: /
+  domain_name: "10.252.2.2"
+  protocol: "http"
 
 # RethinkDB settings
 rethinkdb:

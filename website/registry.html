@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Pxe Cloud</title>
+    <!-- favicon -->
+     <link rel="icon" href="img/logo2.png" type="image/gif" sizes="16x16">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+   
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+    <!-- mi css -->
+    <link href="css/registry.css" rel="stylesheet"  type="text/css"> 
+    
+    <!-- mi js -->
+    <script src="js/web.js"></script>
+
+</head>
+<body>
+     <!-- Navigation -->
+     <nav class="navbar" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand p-0 m-0" href="index.html"><img class="logoImg" src="img/logo2.png" width="80px" alt="Logo"></img> Pxe Cloud</a>     
+        </div>
+     </nav>
+
+     <!-- form registry -->
+     
+     <div class="container">
+        <form class="mt-5 bg-light text-dark p-5 rounded">
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-3 col-form-label">Email *</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputUser" class="col-sm-3 col-form-label">UserName *</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" id="inputUser" placeholder="Username" name="username" required>
+                    </div>
+                </div>
+    
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-3 col-form-label">Password *</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                        <label for="inputConfirm" class="col-sm-3 col-form-label">Confirm password *</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="inputConfirm" placeholder="Confirm password" name="confirmPasswors" required>
+                        </div>
+                        <div  class="text-danger" id="demo"></div>
+                    </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="button" onclick="functionRegistry();" class="btn btn-info">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</body>
+</html>
