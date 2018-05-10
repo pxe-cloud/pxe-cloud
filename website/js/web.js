@@ -320,10 +320,18 @@ function functionRegistry(){
 
 // var itemMenus = ["userGet","userPost","userEdit","userDelete","groupGet","groupPost","groupEdit","groupDelete",
 // "organizationGet","organizationPost","organizationPut","organizationDelete","Home"];
-var itemMenus = ["userGet","userPost","userEdit","userDelete","Home"];
+var itemMenus = ["groupGet","userGet","userPost","userEdit","userDelete","Home"];
+
+
+function functionGroupGet() {
+    for ( var i = 0; i < itemMenus.length; i++){
+        document.getElementById(itemMenus[i]).style.display = "none";
+    };
+    document.getElementById("groupGet").style.display = "block";
+    getGroup();
+};
 
 function functionHome() {
-    
     for ( var i = 0; i < itemMenus.length; i++){
         document.getElementById(itemMenus[i]).style.display = "none";
     };
@@ -331,7 +339,6 @@ function functionHome() {
 };
 
 function functionUserPost() {
-    
     for ( var i = 0; i < itemMenus.length; i++){
         document.getElementById(itemMenus[i]).style.display = "none";
     };

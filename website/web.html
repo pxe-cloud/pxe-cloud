@@ -19,6 +19,7 @@
     <link href="css/web.css" rel="stylesheet"  type="text/css"> 
     <!-- mi js -->
     <script src="js/web.js"></script>
+    <script src="js/group.js"></script>
 
 </head>
 <body>
@@ -49,10 +50,10 @@
             Groups
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Get</a>
-            <a class="dropdown-item" href="#">Put</a>
-            <a class="dropdown-item" href="#">Edit</a>
-            <a class="dropdown-item" href="#">Delete</a>
+            <a class="dropdown-item" href="#" onclick="functionGroupGet()">Get</a>
+            <a class="dropdown-item" href="#" onclick="functionGroupPost()">Post</a>
+            <a class="dropdown-item" href="#" onclick="functionGroupEdit()">Edit</a>
+            <a class="dropdown-item" href="#" onclick="functionGroupDelete()">Delete</a>
           </div>
         </li>
         
@@ -93,7 +94,7 @@
         </li>
       </ul>
     </nav>
-    <!-- Home users -->
+    <!-- Home  -->
     <div class="container mb-5 " id="Home">
         <div class=" mt-5 bg-light text-dark p-5 rounded shadow-lg">
             
@@ -108,21 +109,31 @@
        <!-- get users -->
        <div class="container mb-5" id="userGet">
           <form class="mt-5 bg-light text-dark p-5 rounded shadow-lg">
-            
-               
+                           
                   <div class="container">
                     <h2>List users database</h2>
                     <div class="list-group" id="listUsers">
                       
                     </div>
-                  </div>
-            
-                  
+                  </div>              
                   
               </form>
           </div>
-
-
+<!-- ------------------------------------------- -->
+          <!-- get groups -->
+       <div class="container mb-5" id="groupGet">
+        <form class="mt-5 bg-light text-dark p-5 rounded shadow-lg">
+                         
+                <div class="container">
+                  <h2>List groups database</h2>
+                  <div class="list-group" id="listGroups">
+                    
+                  </div>
+                </div>              
+                
+            </form>
+        </div>
+<!-- ---------------------------------- -->
     <!-- add users -->
         <div class="container" id="userPost">
             <form class="mt-5 bg-light text-dark p-5 rounded">
