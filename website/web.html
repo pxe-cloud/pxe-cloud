@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+    <title>Pxe Cloud</title>
+    <!-- favicon -->
+     <link rel="icon" href="img/logo2.png" type="image/gif" sizes="16x16">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+    <!-- mi css -->
+    <link href="css/web.css" rel="stylesheet"  type="text/css"> 
+    <!-- mi js -->
+    <script src="js/user.js"></script>
+    <script src="js/web.js"></script>
+    <script src="js/group.js"></script>
+    <script src="js/organization.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/images.js"></script>
+
+</head>
+<body>
+    <!-- navbar -->
+
+     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="#" onclick="functionHome();"><img class="logoImg" src="img/logo2.png" width="60px" alt="Logo"></img> &nbsp; Pxe Cloud</a>
+      
+      
+      <!-- Links -->
+      <ul class="navbar-nav ">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Users
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" onclick="functionUserGet()">Get</a>
+            <a class="dropdown-item" href="#" onclick="functionUserPost()">Post</a>
+            <a class="dropdown-item" href="#" onclick="functionUserEdit()">Edit</a>
+            <a class="dropdown-item" href="#" onclick="functionUserDelete()">Delete</a>
+          </div>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Groups
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" onclick="functionGroupGet()">Get</a>
+            <a class="dropdown-item" href="#" onclick="functionGroupPost()">Post</a>
+            <a class="dropdown-item" href="#" onclick="functionGroupEdit()">Edit</a>
+            <a class="dropdown-item" href="#" onclick="functionGroupDelete()">Delete</a>
+          </div>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Organization
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" onclick="functionOrganizationGet()">Get</a>
+            <a class="dropdown-item" href="#" onclick="functionOrganizationPost()">Post</a>
+            <a class="dropdown-item" href="#" onclick="functionOrganizationEdit()">Edit</a>
+            <a class="dropdown-item" href="#" onclick="functionOrganizationDelete()">Delete</a>
+          </div>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Menus
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#" onclick="functionMenuGet()">Get</a>
+            <a class="dropdown-item" href="#" onclick="functionMenuPost()">Post</a>
+            <a class="dropdown-item" href="#" onclick="functionMenuEdit()">Edit</a>
+            <a class="dropdown-item" href="#" onclick="functionMenuDelete()">Delete</a>
+          </div>
+        </li>
+        
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Images
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" onclick="functionImagesGet()">Get</a>
+                <a class="dropdown-item" href="#" onclick="functionImagesPost()">Post</a>
+                <a class="dropdown-item" href="#" onclick="functionImagesEdit()">Edit</a>
+                <a class="dropdown-item" href="#" onclick="functionImagesDelete()">Delete</a>
+            </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container mt-5" id="demoAlert"></div>
+    
+    <!-- Home  -->
+    <div class="container mb-5 " id="Home">
+        <div class=" mt-5 bg-light text-dark p-5 rounded shadow-lg">
+            
+                <div class="container">
+                    <h2>Welcome to the ipxe database administrator</h2>
+                    <p>Choose in the browser, the option you prefer.</p>
+                    
+                </div>
+        </div>                
+     </div>
+
+       <!-- get users -->
+       <div class="container mb-5" id="userGet">
+          <form class=" bg-light text-dark p-5 rounded shadow-lg">
+                           
+                  <div class="container">
+                    <h2>List users database</h2>
+                    <div class="list-group" id="listUsers">
+                      
+                    </div>
+                  </div>              
+                  
+              </form>
+          </div>
+
+
+    <!-- add users -->
+        <div class="container mt-5" id="userPost">
+            <form class=" bg-light text-dark p-5 rounded">
+                <h2>Registry user</h2>
+                  <div class="form-group row">
+                      <label for="inputEmail" class="col-sm-3 col-form-label">Email *</label>
+                      <div class="col-sm-9">
+                          <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="postInputUser" class="col-sm-3 col-form-label">UserName *</label>
+                      <div class="col-sm-9">
+                          <input class="form-control" type="text" id="postInputUser" placeholder="Username" name="username" required>
+                      </div>
+                  </div>
+      
+  
+                  <div class="form-group row">
+                      <label for="postInputPassword" class="col-sm-3 col-form-label">Password *</label>
+                      <div class="col-sm-9">
+                          <input type="password" class="form-control" id="postInputPassword" placeholder="Password" name="password" required>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                          <label for="postInputConfirm" class="col-sm-3 col-form-label">Confirm password *</label>
+                          <div class="col-sm-9">
+                              <input type="password" class="form-control" id="postInputConfirm" placeholder="Confirm password" name="confirmPasswors" required>
+                          </div>
+                          <div  class="text-danger" id="demo"></div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="postInputOrganization" class="col-sm-3 col-form-label">Organization</label>
+                    <div class="col-sm-9">
+                        <select name="organization" class="form-control" id="postInputOrganization"></select>
+                    </div>
+                  </div>
+  
+                  <div class="form-group row">
+                    <label for="postInputGroup" class="col-sm-3 col-form-label">Group</label>
+                    <div class="col-sm-9">
+                        <select name="group" class="form-control" id="postInputGroup">
+                        </select>
+                    </div>
+                </div>
+
+
+                  <div class="form-group row">
+                      <div class="col-sm-10">
+                          <button type="button" onclick="postUser();" class="btn btn-info">Sign in</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+    
+     <!-- edit users -->
+     <div class="container mt-5" id="userEdit">
+            
+      <form class=" bg-light text-dark p-5 rounded">
+            <h2>Edit user</h2>
+            
+            <div class="form-group row">
+                <label for="inputUserEdit" class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <select  class="form-control" id="inputUserEdit"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putInputEmail" class="col-sm-3 col-form-label">New email </label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="putInputEmail" placeholder="New email">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="putInputPassword" class="col-sm-3 col-form-label">Change password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="putInputPassword" placeholder="New password" name="password">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="inputOrganizationPut" class="col-sm-3 col-form-label">Organization</label>
+                <div class="col-sm-9">
+                    <select name="organization" class="form-control" id="inputOrganizationPut"></select>
+                </div>
+                </div>
+
+                <div class="form-group row">
+                <label for="inputGroupPut" class="col-sm-3 col-form-label">Group</label>
+                <div class="col-sm-9">
+                    <select name="group" class="form-control" id="inputGroupPut">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="editUser();" class="btn btn-info">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+
+      <!-- Delete user -->
+     <div class="container mt-5" id="userDelete">
+            
+        <form class=" bg-light text-dark p-5 rounded">
+                <h2>Remove user</h2>
+                
+                <div class="form-group row">
+                    <label for="deleteSelectUser" class="col-sm-3 col-form-label">UserName *</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="deleteSelectUser"></select>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="button" onclick="deleteUser();" class="btn btn-info">Delete</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+<!-- ------------------------------------------------------------------------ groups --------------------------------------------------------------------------- -->
+
+
+
+        <!-- get groups -->
+    <div class="container mt-5 mb-5" id="groupGet">
+    <form class=" bg-light text-dark p-5 rounded shadow-lg">
+                        
+            <div class="container">
+                <h2>List groups database</h2>
+                <div class="list-group" id="listGroups">
+                
+                </div>
+            </div>              
+            
+        </form>
+    </div>
+
+    
+    <!-- add group -->
+    <div class="container mt-5" id="groupPost">
+        <form class=" bg-light text-dark p-5 rounded">
+            <h2>Add group</h2>
+              
+              <div class="form-group row">
+                  <label for="postNameGroup" class="col-sm-3 col-form-label">Group name *</label>
+                  <div class="col-sm-9">
+                      <input class="form-control" type="text" id="postNameGroup" placeholder="group name" required>
+                  </div>
+              </div>
+  
+
+              <div class="form-group row">
+                  <label for="postInputdescriptionGroup" class="col-sm-3 col-form-label">Description</label>
+                  <div class="col-sm-9">
+                      <input type="text" class="form-control" id="postInputdescriptionGroup" placeholder="Group description">
+                  </div>
+              </div>
+              <div class="form-group row">
+                      <label for="postInputMenuidGroup" class="col-sm-3 col-form-label">Name menu *</label>
+                      <div class="col-sm-9">
+                          <select name="selectMenu" class="form-control" id="postInputMenuidGroup"></select>
+                       </div>
+                      <div  class="text-danger" id="demo"></div>
+              </div>
+
+              <div class="form-group row">
+                  <div class="col-sm-10">
+                      <button type="button" onclick="postGroup();" class="btn btn-info">Sign in</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+
+      <!-- Delete group -->
+     <div class="container mt-5" id="groupDelete">
+            
+        <form class=" bg-light text-dark p-5 rounded">
+                <h2>Remove user</h2>
+                
+                <div class="form-group row">
+                    <label for="deleteSelectGroup" class="col-sm-3 col-form-label">UserName *</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="deleteSelectGroup"></select>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="button" onclick="deleteGroup();" class="btn btn-info">Remove</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+    <!-- edit group -->
+    <div class="container mt-5" id="groupPut">
+        <form class=" bg-light text-dark p-5 rounded">
+            <h2>Edit group</h2>
+              
+            <div class="form-group row">
+                <label for="putSelectGroup" class="col-sm-3 col-form-label">Group name</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="putSelectGroup"></select>
+                </div>
+            </div>
+
+              <div class="form-group row">
+                  <label for="putNameGroup" class="col-sm-3 col-form-label">New group name</label>
+                  <div class="col-sm-9">
+                      <input class="form-control" type="text" id="putNameGroup" placeholder="group name">
+                  </div>
+              </div>
+  
+
+              <div class="form-group row">
+                  <label for="putInputdescriptionGroup" class="col-sm-3 col-form-label">Description</label>
+                  <div class="col-sm-9">
+                      <input type="text" class="form-control" id="putInputdescriptionGroup" placeholder="Group description">
+                  </div>
+              </div>
+              <div class="form-group row">
+                      <label for="putInputMenuidGroup" class="col-sm-3 col-form-label">Name menu *</label>
+                      <div class="col-sm-9">
+                          <select name="selectMenu" class="form-control" id="putInputMenuidGroup"></select>
+                       </div>
+                      <div  class="text-danger" id="demo"></div>
+              </div>
+
+              <div class="form-group row">
+                  <div class="col-sm-10">
+                      <button type="button" onclick="putGroup();" class="btn btn-info">Sign in</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+<!-- ----------------------------------------- organizations --------------------------------- -->
+    <!-- get organizations -->
+    <div class="container mt-5 mb-5" id="organizationsGet">
+        <form class=" bg-light text-dark p-5 rounded shadow-lg">
+                            
+            <div class="container">
+                <h2>List Organizations database</h2>
+                <div class="list-group" id="listOrganizations">
+                
+                </div>
+            </div>              
+                
+        </form>
+    </div>
+    
+     <!-- Organization post -->
+     <div class="container mt-5" id="organizationsPost">
+        <form class=" bg-light text-dark p-5 rounded">
+            <h2>Add organization</h2>
+                
+            <div class="form-group row">
+                <label for="postNameOrganization" class="col-sm-3 col-form-label">Group name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postNameOrganization" placeholder="Organization name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postDescriptionOrganization" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postDescriptionOrganization" placeholder="Description">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="postOrganization();" class="btn btn-info">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  
+    <!-- Delete organization -->
+    <div class="container mt-5" id="organizationDelete">
+        
+        <form class=" bg-light text-dark p-5 rounded">
+                <h2>Remove organization</h2>
+                
+                <div class="form-group row">
+                    <label for="deleteSelectOrganization" class="col-sm-3 col-form-label">Organization</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="deleteSelectOrganization"></select>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="button" onclick="deleteOrganization();" class="btn btn-info">Delete</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+    <!-- put organization -->
+    <div class="container mt-5" id="organizationEdit">
+        <form class=" bg-light text-dark p-5 rounded">
+            <h2>Edit organization</h2>
+                
+            <div class="form-group row">
+                <label for="putSelectOrganization" class="col-sm-3 col-form-label">Organization name</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="putSelectOrganization"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putNameOrganization" class="col-sm-3 col-form-label">New organization name</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="putNameOrganization" placeholder="group name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="putInputdescriptionOrganization" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="putInputdescriptionOrganization" placeholder="Organization description">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="putOrganization();" class="btn btn-info">Edit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+        
+<!-- --------------------------------- menus ------------------------------------------------------------------------ -->
+    <!-- add menu -->
+    <div class="container mt-5" id="menuPost">
+        <form class="bg-light text-dark p-5 rounded">
+            <h2>Add menu</h2>
+                
+            <div class="form-group row">
+                <label for="postNameMenu" class="col-sm-3 col-form-label">Menu name *</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="postNameMenu" placeholder="Menu name" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postInputbackgroundMenu" class="col-sm-3 col-form-label">Background</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postInputbackgroundMenu" placeholder="Url background">
+                </div>
+            </div>
+            
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="postMenu();" class="btn btn-info">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- get menus -->
+    <div class="container mb-5" id="menuGet">
+        <form class=" bg-light text-dark p-5 rounded shadow-lg">
+                            
+            <div class="container">
+                <h2>List menus database</h2>
+                <div class="list-group" id="listmenus">
+                
+                </div>
+            </div>              
+                
+        </form>
+    </div>
+    
+     <!-- Delete organization -->
+     <div class="container mt-5" id="menuDelete">
+        
+        <form class=" bg-light text-dark p-5 rounded">
+                <h2>Remove menu</h2>
+                
+                <div class="form-group row">
+                    <label for="deleteSelectMenu" class="col-sm-3 col-form-label">Menu</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="deleteSelectMenu"></select>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="button" onclick="deleteMenu();" class="btn btn-info">Delete</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+    <!-- edit menu -->
+    <div class="container mt-5" id="menuPut">
+        <form class=" bg-light text-dark p-5 rounded">
+            <h2>Edit menu</h2>
+                
+            <div class="form-group row">
+                <label for="editSelectMenu" class="col-sm-3 col-form-label">Menu name</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="editSelectMenu"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="editNameMenu" class="col-sm-3 col-form-label">New menu name</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="editNameMenu" placeholder="New menu name">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="editBackgroudMenu" class="col-sm-3 col-form-label">Background</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="editBackgroudMenu" placeholder="Url background">
+                </div>
+            </div>
+                
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="putMenu();" class="btn btn-info">Edit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<!-- --------------------------------------- images ----------------------------------------- -->
+
+
+     <!-- images post -->
+     <div class="container mt-5" id="imagesPost">
+        <form class=" bg-light text-dark p-5 rounded">
+            <h2>Add image</h2>
+                
+            <div class="form-group row">
+                <label for="postNameImage" class="col-sm-3 col-form-label" title="This is the title of the image">Image name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postNameImage" placeholder="Image name" >
+                    <span class="help-block text-muted">This is the title of the image.</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postTypeImage" class="col-sm-3 col-form-label" title="This is the type of the image (iso, kernel_initrd)">Type image</label>
+                <div class="col-sm-9">
+                        <select class="form-control" id="postTypeImage">
+                            <option value="iso">Iso</option>
+                            <option value="kernel_initrd">kernel_initrd</option>
+                        </select>
+                        <span class="help-block text-secondary">This is the type of the image (iso, kernel_initrd).</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postImageSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the image (iso, initramfs)">Image source</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postImageSource" placeholder="Image source" >
+                    <span class="help-block text-secondary">This is the url (the source) of the image (iso, initramfs).</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postKernelSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the kernel">KernelSource</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postKernelSource" placeholder="Kernel Source" >
+                    <span class="help-block text-secondary">This is the url (the source) of the kernel.</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postRepositoryUrl" class="col-sm-3 col-form-label" title="This is the url of the repository (needed by Red Hat installers)">Repository url</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postRepositoryUrl" placeholder="Repository url" >
+                    <span class="help-block text-secondary">This is the url of the repository (needed by Red Hat installers).</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postBootArgs" class="col-sm-3 col-form-label" title="Aditional parameters passsed to the isos when booting">Boot args</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postBootArgs" placeholder="Boot args" >
+                    <span class="help-block text-secondary">Aditional parameters passsed to the isos when booting.</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="postImages();" class="btn btn-info">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Delete image -->
+    <div class="container mt-5" id="imageDelete">
+        
+        <form class=" bg-light text-dark p-5 rounded">
+                <h2>Remove image</h2>
+                
+                <div class="form-group row">
+                    <label for="deleteSelectImage" class="col-sm-3 col-form-label">Image</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="deleteSelectImage"></select>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="button" onclick="deleteImage();" class="btn btn-info">Delete</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+
+     <!-- images edit -->
+     <div class="container mt-5" id="imagesPut">
+        <form class=" bg-light text-dark p-5 rounded">
+            <h2>Edit image</h2>
+            
+            <div class="form-group row">
+                <label for="putSelectImage" class="col-sm-3 col-form-label">Image</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="putSelectImage"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putNewNameImage" class="col-sm-3 col-form-label" title="This is the title of the image">New image name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="putNewNameImage" placeholder="Image name" >
+                    <span class="help-block text-muted">This is the title of the image.</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putTypeImage" class="col-sm-3 col-form-label" title="This is the type of the image (iso, kernel_initrd)">Type image</label>
+                <div class="col-sm-9">
+                        <select class="form-control" id="putTypeImage">
+                            <option value="iso">Iso</option>
+                            <option value="kernel_initrd">kernel_initrd</option>
+                        </select>
+                        <span class="help-block text-secondary">This is the type of the image (iso, kernel_initrd).</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putImageSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the image (iso, initramfs)">Image source</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="putImageSource" placeholder="Image source" >
+                    <span class="help-block text-secondary">This is the url (the source) of the image (iso, initramfs).</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putKernelSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the kernel">Kernel source</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="putKernelSource" placeholder="Kernel source" >
+                    <span class="help-block text-secondary">This is the url (the source) of the kernel.</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putRepositoryUrl" class="col-sm-3 col-form-label" title="This is the url of the repository (needed by Red Hat installers)">Repository url</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="putRepositoryUrl" placeholder="Repository url" >
+                    <span class="help-block text-secondary">This is the url of the repository (needed by Red Hat installers).</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="putBootArgs" class="col-sm-3 col-form-label" title="Aditional parameters passsed to the isos when booting">Boot args</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="putBootArgs" placeholder="Boot args" >
+                    <span class="help-block text-secondary">Aditional parameters passsed to the isos when booting.</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="putImages();" class="btn btn-info">Edit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- get images -->
+    <div class="container mb-5" id="imagesGet">
+        <form class=" bg-light text-dark p-5 rounded shadow-lg">
+                            
+            <div class="container">
+                <h2>List images database</h2>
+                <div class="list-group" id="listImages">
+                
+                </div>
+            </div>              
+                
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pxe Cloud</title>
+    <!-- favicon -->
+     <link rel="icon" href="img/logo2.png" type="image/gif" sizes="16x16">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+   
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+    
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger p-0 m-0" href="#page-top"><img class="logoImg" src="img/logo2.png" width="80px" alt="Logo"></img> Pxe Cloud</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger"  onclick="FunctionLogin()" id="myBtn">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Intro Header -->
+    <header class="masthead">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto textHeader">
+              <h1 class="brand-heading">Pxe Cloud</h1>
+              <p class="intro-text">A free, application, to manage your ipxe server.</p>
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>About Pxe Cloud</h2>
+            <p>Pxe cloud is a server where you can store all your images of systems in the cloud, ready to install using ipxe.</p>
+            <p>In Pxe Cloud we use the docker technology to start the services, and thus offer an easy installation.</p>
+            <p>Our services interact between: ipxe, dhcp, tftp, rethink, https, python3.6 and others.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------- login ------------------------------------------- -->
+    <section>
+      <div class="container">
+            
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content bg-light">
+                <div class="modal-header bg-info" >
+                  <h3 class="mx-auto mb-0 bg-info"><i class="material-icons">work</i> Login</h3>
+                  
+                  
+                </div>
+
+                <div class="modal-body" style="padding:40px 50px;">
+                  
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="usrname" class="text-dark"><i class="material-icons">perm_identity</i>Username</span></label>
+                      <input type="text" class="form-control" id="usrname" placeholder="Enter Username">
+                    </div>
+                    <div class="form-group">
+                      <label for="psw" class="text-dark"><i class="material-icons">remove_red_eye</i> Password</label> 
+                      <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                    </div>
+                    
+                      <button type="button" class="btn btn-info btn-block" onclick="functionPass();"> Login</button>
+                      <p class="text-dark mb-0 text-right pb-0 pt-1">Not a member? <a href="registry.html">Sign Up</a></p>
+                  </form>
+                
+                </div>
+            
+              
+            </div>
+          </div> 
+        </div>
+        
+
+    </section>
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <!-- Download Section -->
+    <section id="download" class="download-section content-section text-center">
+      <div class="container">
+        <div class="col-lg-8 mx-auto text-dark">
+          <h2>Download Pxe Cloud</h2>
+          <p>You can download Pxe Cloud for free on the Github repository.</p>
+          <a href="https://github.com/orgs/pxe-cloud/"  target="_blank" class="btn btn-success btn-lg">
+            <i class="fa fa-github fa-fw"></i>
+            <span>Github</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; Your Website 2018</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- login  -->
+    <script src="js/login.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+
+  </body>
+
+</html>
