@@ -11,7 +11,7 @@ function getGroup(){
         "headers": {}
     }
     
-    $.ajax(settings).done(function (response) {
+    $.ajax(settings).done(async function (response) {
   
 
         var list = response.response;
@@ -45,7 +45,11 @@ function getGroup(){
             
                 newlink = document.createElement('a');
                 newlink.setAttribute('class',"list-group-item list-group-item-action ");                
-                var t = document.createTextNode(list[i]['menu_id']);
+                //
+                console.log(list[i]['menu_id']);
+                var text = await groupGetMenus(list[i]['menu_id']);
+                var t = document.createTextNode(text);
+                //var t = document.createTextNode(list[i]['menu_id']);
                 newlink.appendChild(t);
                 document.getElementById("menu" + groupname ).appendChild(newlink);
             };
@@ -54,6 +58,26 @@ function getGroup(){
         };
     });
 };
+
+async function groupGetMenus(id){
+    
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://10.252.2.2:8001/menu/" + id,
+        "method": "GET",
+        "headers": {}
+    }
+
+    const ajaxGetMenus = () => {
+        return $.ajax(settings).done(function (response) {     
+            return response.response;
+        });
+    }
+    var abc = await ajaxGetMenus()
+    return abc.response['title'];
+}
+
 
 
 

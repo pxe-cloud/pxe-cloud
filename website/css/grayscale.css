@@ -194,6 +194,16 @@ a:focus, a:hover {
   background-size: cover;
 }
 
+.footer-section {
+  background: url("../img/fondo-footer.jpg") no-repeat center center scroll;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
 #map {
   width: 100%;
   height: 300px;

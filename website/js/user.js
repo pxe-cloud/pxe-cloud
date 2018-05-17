@@ -241,7 +241,7 @@ function getUsers(){
         "headers": {}
     }
     
-    $.ajax(settings).done(function (response) {
+    $.ajax(settings).done(async function (response) {
   
 
         var list = response.response;
@@ -271,8 +271,13 @@ function getUsers(){
                         document.getElementById(username).appendChild(newlink);    
                     };
                     newlink = document.createElement('a');
-                    newlink.setAttribute('class',"list-group-item list-group-item-action ");                
-                    var t = document.createTextNode(list[i]['groups'][x]);
+                    newlink.setAttribute('class',"list-group-item list-group-item-action ");   
+                                
+                    var texts = await uerGetGroups(list[i]['groups'][x]);
+                    //var texts = await uerGetGroups(list[i]['group']);
+                    //  cambiar group y groups
+                    var t = document.createTextNode(texts);
+                    //var t = document.createTextNode(list[i]['groups'][x]);
                     newlink.appendChild(t);
                     document.getElementById("group" + username ).appendChild(newlink);
                 };
@@ -292,11 +297,14 @@ function getUsers(){
                         document.getElementById(username).appendChild(newlink);    
                     };
                     
-                     newlink = document.createElement('a');
+                    newlink = document.createElement('a');
                     newlink.setAttribute('class',"list-group-item list-group-item-action ");                
-                    var t = document.createTextNode(list[i]['organizations'][z]);
+                    var text = await uerGetOrganization(list[i]['organizations'][z]);
+                    var t = document.createTextNode(text);
+                    
                     newlink.appendChild(t);
                     document.getElementById("organization" + username).appendChild(newlink);
+                   
                 }
             }
         
@@ -309,3 +317,40 @@ function getUsers(){
 
 };
 
+async function uerGetOrganization(id){
+    
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://10.252.2.2:8001/organization/" + id,
+        "method": "GET",
+        "headers": {}
+    }
+
+    const ajaxGetUsers = () => {
+        return $.ajax(settings).done(function (response) {     
+            return response.response;
+        });
+    }
+    var abc = await ajaxGetUsers()
+    return abc.response['name'];
+}
+ 
+async function uerGetGroups(id){
+    
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://10.252.2.2:8001/group/" + id,
+        "method": "GET",
+        "headers": {}
+    }
+
+    const ajaxGetUsers = () => {
+        return $.ajax(settings).done(function (response) {     
+            return response.response;
+        });
+    }
+    var abc = await ajaxGetUsers()
+    return abc.response['name'];
+}

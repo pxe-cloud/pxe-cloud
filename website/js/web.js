@@ -8,6 +8,11 @@ $(document).ready(() => {
 // document.getElementById("Home").style.display = "block";
 
 // -------------------------------------
+for ( var i = 0; i < itemMenus.length; i++){
+    document.getElementById(itemMenus[i]).style.display = "none";
+};
+document.getElementById("Home").style.display = "block";
+
     
 // -----------------------------------------------------------
  
@@ -71,173 +76,233 @@ function functionAlert(answer){
 var itemMenus = ["imagesGet","imagesPut","imageDelete","imagesPost","menuPut","menuDelete","menuGet","menuPost","organizationEdit","organizationDelete","organizationsPost","organizationsGet","groupPut","groupDelete","groupPost","groupGet","userGet","userPost","userEdit","userDelete","Home"];
 
 function functionImagesGet() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("imagesGet").style.display = "block";
-    getImages();
+    var test = document.getElementById("imagesGet").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("imagesGet").style.display = "block";
+        getImages();
+    }
 };
 
 function functionImagesEdit() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("imagesPut").style.display = "block";
-    putImageSelect();
+    var test = document.getElementById("imagesPut").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("imagesPut").style.display = "block";
+        putImageSelect();
+    }
 };
 
 function functionImagesDelete() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("imageDelete").style.display = "block";
-    deleteImageSelect();
+    var test = document.getElementById("imageDelete").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("imageDelete").style.display = "block";
+        deleteImageSelect();
+    }
 };
 
 function functionImagesPost() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("imagesPost").style.display = "block";
+    var test = document.getElementById("imagesPost").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("imagesPost").style.display = "block";
+    }
 };
 
 function functionMenuEdit() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("menuPut").style.display = "block";
-    putSelectMenus();
+    var test = document.getElementById("menuPut").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("menuPut").style.display = "block";
+        putSelectMenus();
+    }
 };
 
 function functionMenuDelete() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("menuDelete").style.display = "block";
-    deleteSelectMenus();
+    var test = document.getElementById("menuDelete").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("menuDelete").style.display = "block";
+        deleteSelectMenus();
+    }
 };
 
 function functionMenuGet() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("menuGet").style.display = "block";
-    getMenus();
+    var test = document.getElementById("menuGet").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("menuGet").style.display = "block";
+        getMenus();
+    }
 };
 
 function functionMenuPost() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("menuPost").style.display = "block";
+    var test = document.getElementById("menuPost").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("menuPost").style.display = "block";
+    }
 };
 
 function functionOrganizationEdit() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("organizationEdit").style.display = "block";
-    putOrganizationSelect();
+    var test = document.getElementById("organizationEdit").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("organizationEdit").style.display = "block";
+        putOrganizationSelect();
+    }
 };
 
 function functionOrganizationDelete() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("organizationDelete").style.display = "block";
-    deleteOrganizationSelect();
+    var test = document.getElementById("organizationDelete").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("organizationDelete").style.display = "block";
+        deleteOrganizationSelect();
+    }
 };
 
 function functionOrganizationPost() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("organizationsPost").style.display = "block";
+    var test = document.getElementById("organizationsPost").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("organizationsPost").style.display = "block";
+    }
 };
 
 function functionOrganizationGet() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("organizationsGet").style.display = "block";
-    getOrganization();
+    var test = document.getElementById("organizationsGet").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("organizationsGet").style.display = "block";
+        getOrganization();
+    }
 };
 
 function functionGroupEdit() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("groupPut").style.display = "block";
-    putGroupSelectGroup();
-    putGroupSelectMenus();
+    var test = document.getElementById("groupPut").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("groupPut").style.display = "block";
+        putGroupSelectGroup();
+        putGroupSelectMenus();
+    }
 };
 
 function functionGroupDelete() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("groupDelete").style.display = "block";
-    deleteGroupSelectGroup();
+    var test = document.getElementById("groupDelete").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("groupDelete").style.display = "block";
+        deleteGroupSelectGroup();
+    }
 };
 
 function functionGroupPost() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("groupPost").style.display = "block";
-    postGroupSelectMenus();
+    var test = document.getElementById("groupPost").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("groupPost").style.display = "block";
+        postGroupSelectMenus();
+    }
 };
 
 function functionGroupGet() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("groupGet").style.display = "block";
-    getGroup();
+    var test = document.getElementById("groupGet").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("groupGet").style.display = "block";
+        getGroup();
+    }
 };
 
 function functionHome() {
+    
     for ( var i = 0; i < itemMenus.length; i++){
         document.getElementById(itemMenus[i]).style.display = "none";
     };
     document.getElementById("Home").style.display = "block";
+    
 };
 
 function functionUserPost() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("userPost").style.display = "block";
-    postGroupUsers();
-    postOrganizationUsers();
+    var test = document.getElementById("userPost").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("userPost").style.display = "block";
+        postGroupUsers();
+        postOrganizationUsers();
+    }
 };
 
 function functionUserEdit() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("userEdit").style.display = "block";
-    putGroupUsers();
-    putOrganizationUsers();
-    editUserSelect();
-    
+    var test = document.getElementById("userEdit").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("userEdit").style.display = "block";
+        putGroupUsers();
+        putOrganizationUsers();
+        editUserSelect();
+    }
 };
 
 function functionUserGet() {
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("userGet").style.display = "block";
-    getUsers();
+    var test = document.getElementById("userGet").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("userGet").style.display = "block";
+        getUsers();
+    }
 };
 
 function functionUserDelete() {
-    
-    for ( var i = 0; i < itemMenus.length; i++){
-        document.getElementById(itemMenus[i]).style.display = "none";
-    };
-    document.getElementById("userDelete").style.display = "block";
-    deleteUserSelectGroup();
+    var test = document.getElementById("userDelete").style.display;
+    if ( test != "block" ){
+        for ( var i = 0; i < itemMenus.length; i++){
+            document.getElementById(itemMenus[i]).style.display = "none";
+        };
+        document.getElementById("userDelete").style.display = "block";
+        deleteUserSelectGroup();
+    }
 };
 
 
