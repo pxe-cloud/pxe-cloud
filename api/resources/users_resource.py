@@ -34,6 +34,7 @@ class Users(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("username", type=str, help="This is the username of the user")
         parser.add_argument("password", type=str, help="This is the password of the user")
+        parser.add_argument("email", type=str, help="This is the email address of the user")
         parser.add_argument("organization", type=str, help="This is the organization id that the user is going to be on")
         parser.add_argument("group", type=str, help="This is the group that the user is going to be on")
         args = parser.parse_args()
@@ -41,6 +42,7 @@ class Users(Resource):
         result = r.table("users").insert([{
             "username": args["username"],
             "password": encrypt_password(args["password"]),
+            "email": args["email"],
             "organizations": [args["organization"]],
             "groups": [args["group"]]
         }]).run(conn)
