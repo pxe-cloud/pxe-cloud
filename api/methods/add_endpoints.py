@@ -4,6 +4,8 @@
 # Resources imports
 from api.resources.users_resource import Users
 from api.resources.user_resource import User
+from api.resources.users.user_organization_resource import UserOrganization
+from api.resources.users.user_group_resource import UserGroup
 from api.resources.organizations_resource import Organizations
 from api.resources.organization_resource import Organization
 from api.resources.groups_resource import Groups
@@ -23,6 +25,8 @@ from api.resources.boot.return_image_resource import ReturnImage
 def add_endpoints(api):
     api.add_resource(Users, "/users")
     api.add_resource(User, "/user/<username>")
+    api.add_resource(UserOrganization, "/user/<username>/organization/<organization_id>")
+    api.add_resource(UserGroup, "/user/<username>/group/<group_id>")
     api.add_resource(Organizations, "/organizations")
     api.add_resource(Organization, "/organization/<organization_id>")
     api.add_resource(Groups, "/groups")
