@@ -10,7 +10,7 @@ function postImages(){
     
     $.ajax({
         type: "POST",
-        url: "http://10.252.2.2:8001/images",
+        url: config() + "/images",
         data : {'title':titleImage, 
                 'type': typeImage, 
                 'image_source': imageSource,
@@ -35,7 +35,7 @@ function deleteImage(){
             
     $.ajax({
         type: "DELETE",
-        url: "http://10.252.2.2:8001/image/" + idImage,
+        url: config() + "/image/" + idImage,
              
         }).done(function (response) {
             var answer = response.response;
@@ -49,7 +49,7 @@ function deleteImageSelect(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/images",
+        "url": config() + "/images",
         "method": "GET",
         "headers": {}
     }
@@ -91,7 +91,7 @@ function putImages(){
 
     $.ajax({
         type: "PUT",
-        url: "http://10.252.2.2:8001/image/" + idImage,
+        url: config() + "/image/" + idImage,
         data : {'title':titleImage, 
                 'type': typeImage, 
                 'image_source': imageSource,
@@ -111,7 +111,7 @@ function putImageSelect(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/images",
+        "url": config() + "/images",
         "method": "GET",
         "headers": {}
     }
@@ -147,7 +147,7 @@ function getImages(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/images",
+        "url": config() + "/images",
         "method": "GET",
         "headers": {}
     }

@@ -7,7 +7,7 @@ function postMenu(){
     
     $.ajax({
         type: "POST",
-        url: "http://10.252.2.2:8001/menus",
+        url: config() + "/menus",
         data : {'title':nameMenu, 'background': backgroungMenu },
 
             }).done(function (response) {
@@ -33,7 +33,7 @@ function putMenu(){
     
     $.ajax({
         type: "PUT",
-        url: "http://10.252.2.2:8001/menu/" + idMenu,
+        url: config() + "/menu/" + idMenu,
         data : {'title':nameMenu, 'background': backgroundMenu },
         
             }).done(function (response) {
@@ -48,7 +48,7 @@ function putSelectMenus(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/menus",
+        "url": config() + "/menus",
         "method": "GET",
         "headers": {}
     }
@@ -77,7 +77,7 @@ function deleteMenu(){
         
     $.ajax({
         type: "DELETE",
-        url: "http://10.252.2.2:8001/menu/" + menu,
+        url: config() + "/menu/" + menu,
              
         }).done(function (response) {
             var answer = response.response;
@@ -91,7 +91,7 @@ function deleteSelectMenus(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/menus",
+        "url": config() + "/menus",
         "method": "GET",
         "headers": {}
     }
@@ -119,7 +119,7 @@ function getMenus(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/menus",
+        "url": config() + "/menus",
         "method": "GET",
         "headers": {}
     }

@@ -24,6 +24,8 @@
     <script src="js/organization.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/images.js"></script>
+    <script src="js/config.js"></script>
+
 
 </head>
 <body>
@@ -42,10 +44,10 @@
             Users
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" onclick="functionUserGet()">Get</a>
-            <a class="dropdown-item" href="#" onclick="functionUserPost()">Post</a>
-            <a class="dropdown-item" href="#" onclick="functionUserEdit()">Edit</a>
-            <a class="dropdown-item" href="#" onclick="functionUserDelete()">Delete</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('userGet')">Get</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('userPost')">Post</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('userEdit')">Edit</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('userDelete')">Delete</a>
           </div>
         </li>
         
@@ -54,10 +56,10 @@
             Groups
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" onclick="functionGroupGet()">Get</a>
-            <a class="dropdown-item" href="#" onclick="functionGroupPost()">Post</a>
-            <a class="dropdown-item" href="#" onclick="functionGroupEdit()">Edit</a>
-            <a class="dropdown-item" href="#" onclick="functionGroupDelete()">Delete</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('groupGet')">Get</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('groupPut')">Post</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('groupPut')">Edit</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('groupDelete')">Delete</a>
           </div>
         </li>
         
@@ -66,10 +68,10 @@
             Organization
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" onclick="functionOrganizationGet()">Get</a>
-            <a class="dropdown-item" href="#" onclick="functionOrganizationPost()">Post</a>
-            <a class="dropdown-item" href="#" onclick="functionOrganizationEdit()">Edit</a>
-            <a class="dropdown-item" href="#" onclick="functionOrganizationDelete()">Delete</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('organizationsGet')">Get</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('organizationsPost')">Post</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('organizationEdit')">Edit</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('organizationDelete')">Delete</a>
           </div>
         </li>
         
@@ -78,10 +80,10 @@
             Menus
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" onclick="functionMenuGet()">Get</a>
-            <a class="dropdown-item" href="#" onclick="functionMenuPost()">Post</a>
-            <a class="dropdown-item" href="#" onclick="functionMenuEdit()">Edit</a>
-            <a class="dropdown-item" href="#" onclick="functionMenuDelete()">Delete</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('menuGet')">Get</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('menuPost')">Post</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('menuPut')">Edit</a>
+            <a class="dropdown-item" href="#" onclick="reloadAndOpen('menuDelete')">Delete</a>
           </div>
         </li>
         
@@ -90,10 +92,10 @@
                 Images
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" onclick="functionImagesGet()">Get</a>
-                <a class="dropdown-item" href="#" onclick="functionImagesPost()">Post</a>
-                <a class="dropdown-item" href="#" onclick="functionImagesEdit()">Edit</a>
-                <a class="dropdown-item" href="#" onclick="functionImagesDelete()">Delete</a>
+                <a class="dropdown-item" href="#" onclick="reloadAndOpen('imagesGet')">Get</a>
+                <a class="dropdown-item" href="#" onclick="reloadAndOpen('imagesPost')">Post</a>
+                <a class="dropdown-item" href="#" onclick="reloadAndOpen('imagesPut')">Edit</a>
+                <a class="dropdown-item" href="#" onclick="reloadAndOpen('imageDelete')">Delete</a>
             </div>
         </li>
       </ul>

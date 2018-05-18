@@ -6,7 +6,7 @@ function getGroup(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/groups",
+        "url": config() + "/groups",
         "method": "GET",
         "headers": {}
     }
@@ -64,7 +64,7 @@ async function groupGetMenus(id){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/menu/" + id,
+        "url": config() + "/menu/" + id,
         "method": "GET",
         "headers": {}
     }
@@ -90,7 +90,7 @@ function postGroup(){
     
     $.ajax({
         type: "POST",
-        url: "http://10.252.2.2:8001/groups",
+        url: config() + "/groups",
         data : {'name':nameGroup, 'description': descriptionGroup, 'menu_id': idMenu },
         
         
@@ -104,7 +104,7 @@ function postGroupSelectMenus(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/menus",
+        "url": config() + "/menus",
         "method": "GET",
         "headers": {}
     }
@@ -135,7 +135,7 @@ function deleteGroup(){
         
     $.ajax({
         type: "DELETE",
-        url: "http://10.252.2.2:8001/group/" + group,
+        url: config() + "/group/" + group,
              
         }).done(function (response) {
             var answer = response.response;
@@ -149,7 +149,7 @@ function deleteGroupSelectGroup(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/groups",
+        "url": config() + "/groups",
         "method": "GET",
         "headers": {}
     }
@@ -188,7 +188,7 @@ function putGroup(){
     
     $.ajax({
         type: "PUT",
-        url: "http://10.252.2.2:8001/group/" + idGroup,
+        url: config() + "/group/" + idGroup,
         data : {'name':nameGroup, 'description': descriptionGroup, 'menu_id': idMenu },
         
         
@@ -201,7 +201,7 @@ function putGroupSelectMenus(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/menus",
+        "url": config() + "/menus",
         "method": "GET",
         "headers": {}
     }
@@ -225,7 +225,7 @@ function putGroupSelectGroup(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/groups",
+        "url": config() + "/groups",
         "method": "GET",
         "headers": {}
     }

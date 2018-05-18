@@ -5,7 +5,7 @@ function getOrganization(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/organizations",
+        "url": config() + "/organizations",
         "method": "GET",
         "headers": {}
     }
@@ -67,7 +67,7 @@ function postOrganization(){
     
     $.ajax({
         type: "POST",
-        url: "http://10.252.2.2:8001/organizations",
+        url: config() + "/organizations",
         data : {'name':nameOrganization, 'description': descriptionOrganization },
 
             }).done(function (response) {
@@ -86,7 +86,7 @@ function deleteOrganization(){
         
     $.ajax({
         type: "DELETE",
-        url: "http://10.252.2.2:8001/group/" + idOrganization,
+        url: config() + "/group/" + idOrganization,
              
         }).done(function (response) {
             var answer = response.response;
@@ -100,7 +100,7 @@ function deleteOrganizationSelect(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/organizations",
+        "url": config() + "/organizations",
         "method": "GET",
         "headers": {}
     }
@@ -139,7 +139,7 @@ function putOrganization(){
     
     $.ajax({
         type: "PUT",
-        url: "http://10.252.2.2:8001/organization/" + idOrganization,
+        url: config() + "/organization/" + idOrganization,
         data : {'name':nameOrganization, 'description': descriptionOrganization },
         
         
@@ -154,7 +154,7 @@ function putOrganizationSelect(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/organizations",
+        "url": config() + "/organizations",
         "method": "GET",
         "headers": {}
     }

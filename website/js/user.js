@@ -7,7 +7,7 @@ function deleteUser(){
         
     $.ajax({
         type: "DELETE",
-        url: "http://10.252.2.2:8001/user/" + user,
+        url: config() + "/user/" + user,
              
         }).done(function (response) {
 
@@ -22,7 +22,7 @@ function deleteUserSelectGroup(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/users",
+        "url": config() + "/users",
         "method": "GET",
         "headers": {}
     }
@@ -54,7 +54,7 @@ function editUser(){
         
     $.ajax({
         type: "PUT",
-        url: "http://10.252.2.2:8001/user/" + user,
+        url: config() + "/user/" + user,
         data : {'password': pass, 'organization': organization, 'group': group},
         
         
@@ -70,7 +70,7 @@ function editUserSelect(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/users",
+        "url": config() + "/users",
         "method": "GET",
         "headers": {}
     }
@@ -95,7 +95,7 @@ function putGroupUsers(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/groups",
+        "url": config() + "/groups",
         "method": "GET",
         "headers": {}
     }
@@ -120,7 +120,7 @@ function putOrganizationUsers(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/organizations",
+        "url": config() + "/organizations",
         "method": "GET",
         "headers": {}
     }
@@ -158,7 +158,7 @@ function postUser(){
                 
         $.ajax({
             type: "POST",
-            url: "http://10.252.2.2:8001/users",
+            url: config() + "/users",
             data : {'username':user, 'organization': organization, 'password': pass, 'group': organization},
             
             
@@ -180,7 +180,7 @@ function postGroupUsers(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/groups",
+        "url": config() + "/groups",
         "method": "GET",
         "headers": {}
     }
@@ -205,7 +205,7 @@ function postOrganizationUsers(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/organizations",
+        "url": config() + "/organizations",
         "method": "GET",
         "headers": {}
     };
@@ -236,7 +236,7 @@ function getUsers(){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/users",
+        "url": config() + "/users",
         "method": "GET",
         "headers": {}
     }
@@ -322,7 +322,7 @@ async function uerGetOrganization(id){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/organization/" + id,
+        "url": config() + "/organization/" + id,
         "method": "GET",
         "headers": {}
     }
@@ -341,7 +341,7 @@ async function uerGetGroups(id){
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://10.252.2.2:8001/group/" + id,
+        "url": config() + "/group/" + id,
         "method": "GET",
         "headers": {}
     }
