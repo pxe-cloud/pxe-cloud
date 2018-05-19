@@ -96,43 +96,15 @@ function deleteOrganization(){
 
 };
 
-function deleteOrganizationSelect(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/organizations",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['name']);
-            newlink.appendChild(t);
-            
-            document.getElementById("deleteSelectOrganization").appendChild(newlink);
-            //document.getElementById("putSelectGroup").appendChild(newlink);
-            
-        ;}
-    });
-}
 
 // put group --------------------------------------------------------------
 function putOrganization(){
     
     var idOrganization = document.querySelector("#putSelectOrganization").value;
-    // falla value= por inexplicable causa
     var nameOrganization = document.querySelector('[value="'+ idOrganization +'"]').textContent;
     var newNameOrganization = document.querySelector("#putNameOrganization").value;
     var descriptionOrganization = document.querySelector("#putInputdescriptionOrganization").value;
     
-    // if newgroup exist add newgroup at name group.
     if ( newNameOrganization.length > 1 ){
         nameOrganization = newNameOrganization
     }
@@ -150,7 +122,9 @@ function putOrganization(){
     });
 }
 
-function putOrganizationSelect(){
+
+
+function GetOrganizations(id){
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -165,14 +139,12 @@ function putOrganizationSelect(){
         var len = response.response.length;
         
         for (var i = 0; i < len; i++ ) {
+            var groupList = list[i]['name'].length;  
             newlink = document.createElement('option');
             newlink.setAttribute('value',list[i]['id']);                
             var t = document.createTextNode(list[i]['name']);
             newlink.appendChild(t);
-            
-            document.getElementById("putSelectOrganization").appendChild(newlink);
-            //document.getElementById("putSelectGroup").appendChild(newlink);
-            
+            document.getElementById(id).appendChild(newlink);
         ;}
     });
 }

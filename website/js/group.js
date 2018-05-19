@@ -100,30 +100,6 @@ function postGroup(){
     });
 }
 
-function postGroupSelectMenus(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/menus",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['title']);
-            newlink.appendChild(t);
-            document.getElementById("postInputMenuidGroup").appendChild(newlink);
-            //document.getElementById("putInputMenuidGroup").appendChild(newlink);
-        ;}
-    });
-}
 
 
 
@@ -145,32 +121,6 @@ function deleteGroup(){
 
 };
 
-function deleteGroupSelectGroup(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/groups",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['name']);
-            newlink.appendChild(t);
-            
-            document.getElementById("deleteSelectGroup").appendChild(newlink);
-            //document.getElementById("putSelectGroup").appendChild(newlink);
-            
-        ;}
-    });
-}
 
 
 // put group --------------------------------------------------------------
@@ -197,31 +147,8 @@ function putGroup(){
                 functionAlert(answer);
     });
 }
-function putGroupSelectMenus(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/menus",
-        "method": "GET",
-        "headers": {}
-    }
 
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['title']);
-            newlink.appendChild(t);
-            //document.getElementById("postInputMenuidGroup").appendChild(newlink);
-            document.getElementById("putInputMenuidGroup").appendChild(newlink);
-        ;}
-    });
-}
-function putGroupSelectGroup(){
+function GetGroups(id){
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -236,14 +163,12 @@ function putGroupSelectGroup(){
         var len = response.response.length;
         
         for (var i = 0; i < len; i++ ) {
+            var groupList = list[i]['name'].length;  
             newlink = document.createElement('option');
             newlink.setAttribute('value',list[i]['id']);                
             var t = document.createTextNode(list[i]['name']);
             newlink.appendChild(t);
-            
-            //document.getElementById("deleteSelectGroup").appendChild(newlink);
-            document.getElementById("putSelectGroup").appendChild(newlink);
-            
+            document.getElementById(id).appendChild(newlink);
         ;}
     });
 }

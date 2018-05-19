@@ -21,12 +21,10 @@ function postMenu(){
 function putMenu(){
     
     var idMenu = document.querySelector("#editSelectMenu").value;
-    // falla value= por inexplicable causa
     var nameMenu = document.querySelector('[value="'+ idMenu +'"]').textContent;
     var newNameMenu = document.querySelector("#editNameMenu").value;
     var backgroundMenu = document.querySelector("#editBackgroudMenu").value;
     
-    // if newgroup exist add newgroup at name group.
     if ( newNameMenu.length > 1 ){
         nameMenu = newNameMenu ;
     }
@@ -44,30 +42,6 @@ function putMenu(){
 }
 
 
-function putSelectMenus(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/menus",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['title']);
-            newlink.appendChild(t);
-            
-            document.getElementById("editSelectMenu").appendChild(newlink);
-        ;}
-    });
-}
 
 // delete menu ----------------------------------------------------
 
@@ -87,30 +61,6 @@ function deleteMenu(){
 
 };
 
-function deleteSelectMenus(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/menus",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['title']);
-            newlink.appendChild(t);
-            
-            document.getElementById("deleteSelectMenu").appendChild(newlink);
-        ;}
-    });
-}
 
 
 // get menus-----------------------------------------------------
@@ -168,3 +118,28 @@ function getMenus(){
         };
     });
 };
+
+function GetMenus(id){
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": config() + "/menus",
+        "method": "GET",
+        "headers": {}
+    }
+
+    $.ajax(settings).done(function (response) {
+
+        var list = response.response;
+        var len = response.response.length;
+        
+        for (var i = 0; i < len; i++ ) {
+            newlink = document.createElement('option');
+            newlink.setAttribute('value',list[i]['id']);                
+            var t = document.createTextNode(list[i]['title']);
+            newlink.appendChild(t);
+            document.getElementById(id).appendChild(newlink);
+          
+        ;}
+    });
+}

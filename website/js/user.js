@@ -14,11 +14,11 @@ function deleteUser(){
             var answer = response.response;
             console.log(answer);
             functionAlert(answer);
-
          });
 
 };
-function deleteUserSelectGroup(){
+
+function GetUsers(id){
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -37,7 +37,7 @@ function deleteUserSelectGroup(){
             newlink.setAttribute('value',list[i]['username']);                
             var t = document.createTextNode(list[i]['username']);
             newlink.appendChild(t);
-            document.getElementById("deleteSelectUser").appendChild(newlink);
+            document.getElementById(id).appendChild(newlink);
         ;}
         
     });
@@ -66,82 +66,9 @@ function editUser(){
 
 };
 
-function editUserSelect(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/users",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['username']);                
-            var t = document.createTextNode(list[i]['username']);
-            newlink.appendChild(t);
-            document.getElementById("inputUserEdit").appendChild(newlink);
-        ;}
-    });
-}
 
 
-function putGroupUsers(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/groups",
-        "method": "GET",
-        "headers": {}
-    }
 
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            var groupList = list[i]['name'].length;  
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['name']);
-            newlink.appendChild(t);
-            document.getElementById("inputGroupPut").appendChild(newlink);
-        ;}
-    });
-}
-
-function putOrganizationUsers(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/organizations",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            var groupList = list[i]['name'].length;  
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['name']);
-            newlink.appendChild(t);
-            document.getElementById("inputOrganizationPut").appendChild(newlink);
-        ;}
-    });
-}
-
-// ---------------------------------------------------------------------------
 
 // post users --------------------------------------------------------------
 function postUser(){
@@ -175,59 +102,6 @@ function postUser(){
     }
 
 }
-
-function postGroupUsers(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/groups",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            var groupList = list[i]['name'].length;  
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['name']);
-            newlink.appendChild(t);
-            document.querySelector("#postInputGroup").appendChild(newlink);
-        };
-    });
-}
-
-function postOrganizationUsers(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/organizations",
-        "method": "GET",
-        "headers": {}
-    };
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            var groupList = list[i]['name'].length;  
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['name']);
-            newlink.appendChild(t);
-            document.querySelector("#postInputOrganization").appendChild(newlink);
-        };
-    });
-}
-
-//------------------------------------------------------
-
 
 
 // get users -----------------------------------------------------
@@ -272,12 +146,8 @@ function getUsers(){
                     };
                     newlink = document.createElement('a');
                     newlink.setAttribute('class',"list-group-item list-group-item-action ");   
-                                
-                    var texts = await uerGetGroups(list[i]['groups'][x]);
-                    //var texts = await uerGetGroups(list[i]['group']);
-                    //  cambiar group y groups
+                    var texts = await userGetGroups(list[i]['groups'][x]);
                     var t = document.createTextNode(texts);
-                    //var t = document.createTextNode(list[i]['groups'][x]);
                     newlink.appendChild(t);
                     document.getElementById("group" + username ).appendChild(newlink);
                 };
@@ -299,7 +169,7 @@ function getUsers(){
                     
                     newlink = document.createElement('a');
                     newlink.setAttribute('class',"list-group-item list-group-item-action ");                
-                    var text = await uerGetOrganization(list[i]['organizations'][z]);
+                    var text = await userGetOrganization(list[i]['organizations'][z]);
                     var t = document.createTextNode(text);
                     
                     newlink.appendChild(t);
@@ -317,7 +187,7 @@ function getUsers(){
 
 };
 
-async function uerGetOrganization(id){
+async function userGetOrganization(id){
     
     var settings = {
         "async": true,
@@ -336,7 +206,7 @@ async function uerGetOrganization(id){
     return abc.response['name'];
 }
  
-async function uerGetGroups(id){
+async function userGetGroups(id){
     
     var settings = {
         "async": true,

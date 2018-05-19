@@ -68,7 +68,11 @@ function functionAlert(answer){
 
 // change to menus in web.html
 
-var itemMenus = ["imagesGet","imagesPut","imageDelete","imagesPost","menuPut","menuDelete","menuGet","menuPost","organizationEdit","organizationDelete","organizationsPost","organizationsGet","groupPut","groupDelete","groupPost","groupGet","userGet","userPost","userEdit","userDelete","Home"];
+var itemMenus = ["imagesGet","imagesPut","imageDelete","imagesPost",
+                "menuPut","menuDelete","menuGet","menuPost",
+                "organizationEdit","organizationDelete","organizationsPost","organizationsGet",
+                "groupPut","groupDelete","groupPost","groupGet",
+                "userGet","userPost","userEdit","userDelete","Home"];
 
 
 function get(idItemToOpen) {  
@@ -78,27 +82,64 @@ function get(idItemToOpen) {
             document.getElementById(itemMenus[i]).style.display = "none";
         };
         document.getElementById(idItemToOpen).style.display = "block";
-        getImages();
-        putImageSelect();
-        deleteImageSelect();
-        putSelectMenus();
-        deleteSelectMenus();
-        getMenus();
-        putOrganizationSelect();
-        deleteOrganizationSelect();
-        getOrganization();
-        putGroupSelectGroup();
-        putGroupSelectMenus();
-        deleteGroupSelectGroup();
-        postGroupSelectMenus();
-        getGroup();
-        postGroupUsers();
-        postOrganizationUsers();
-        putGroupUsers();
-        putOrganizationUsers();
-        editUserSelect();
-        getUsers();
-        deleteUserSelectGroup();
+    //users -------------------------------
+        if ( idItemToOpen == "userGet" ){
+            getUsers(); 
+        
+        } else if ( idItemToOpen == "userPost" ){
+            GetOrganizations("postInputOrganization");
+            GetGroups("postInputGroup");
+        
+        } else if ( idItemToOpen == "userEdit" ){
+            GetUsers("inputUserEdit");
+            GetOrganizations("inputOrganizationPut");
+            GetGroups("inputGroupPut");
+        
+        } else if ( idItemToOpen == "userDelete" ){
+            GetUsers("deleteSelectUser");
+    // groups ---------------------------------------------------
+        } else if ( idItemToOpen == "groupPost" ){
+            GetMenus("postInputMenuidGroup");
+        
+        } else if ( idItemToOpen == "groupPut" ){
+            GetGroups("putSelectGroup");
+            GetMenus("putInputMenuidGroup");
+        
+        } else if ( idItemToOpen == "groupDelete" ){
+            GetGroups("deleteSelectGroup");
+        
+        } else if ( idItemToOpen == "groupGet" ){
+            getGroup(); 
+    // organizations ------------------------
+        } else if ( idItemToOpen == "organizationsGet" ){
+            getOrganization(); 
+        
+        } else if ( idItemToOpen == "organizationDelete" ){
+            GetOrganizations("deleteSelectOrganization");
+        
+        } else if ( idItemToOpen == "organizationEdit" ){
+            GetOrganizations("putSelectOrganization");
+    // menus ------------------------------------------
+        } else if ( idItemToOpen == "menuGet" ){
+            getMenus();
+        
+        } else if ( idItemToOpen == "menuDelete" ){
+            GetMenus("deleteSelectMenu");
+        
+        } else if ( idItemToOpen == "menuPut" ){
+            GetMenus("editSelectMenu");
+
+    // images -----------------------------------------
+        } else if ( idItemToOpen == "imagesGet" ){
+            getImages();
+    
+        } else if ( idItemToOpen == "imagesPut" ){
+            GetImages("putSelectImage");
+        
+        } else if ( idItemToOpen == "imageDelete" ){
+            GetImages("deleteSelectImage");
+        }
+    
     }
 };
 

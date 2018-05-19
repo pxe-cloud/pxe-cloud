@@ -45,7 +45,7 @@ function deleteImage(){
 
 };
 
-function deleteImageSelect(){
+function GetImages(id){
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -65,7 +65,7 @@ function deleteImageSelect(){
             var t = document.createTextNode(list[i]['title']);
             newlink.appendChild(t);
             
-            document.getElementById("deleteSelectImage").appendChild(newlink);
+            document.getElementById(id).appendChild(newlink);
             
             
         ;}
@@ -106,34 +106,6 @@ function putImages(){
                     
     });
 }
-
-function putImageSelect(){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/images",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['title']);
-            newlink.appendChild(t);
-            
-            document.getElementById("putSelectImage").appendChild(newlink);
-            
-            
-        ;}
-    });
-}
-
 
 
 // get Images -----------------------------------------------------
