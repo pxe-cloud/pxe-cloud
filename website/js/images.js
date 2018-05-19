@@ -176,3 +176,30 @@ function getImages(){
         };        
     });
 };
+
+// select post options 
+var options = ["#divImageSource","#divKernelSource","#divRepositoryUrl","#divBootArgs"];
+function isoOptions(){
+    for ( var i = 0; i < options.length; i++ ){
+        var element = document.querySelector(options[i]);
+        element.classList.add("d-none");
+    }
+    var element = document.querySelector("#divImageSource");
+    element.classList.remove("d-none");
+}
+
+function imgOptions(){
+    for ( var i = 0; i < options.length; i++ ){
+        var element = document.querySelector(options[i]);
+        element.classList.remove("d-none");
+    }
+    var element = document.querySelector("#divImageSource");
+    element.classList.add("d-none");
+}
+
+function hideOptions(){
+    for ( var i = 0; i < options.length; i++ ){
+        var element = document.querySelector(options[i]);
+        element.classList.add("d-none");
+    }
+}

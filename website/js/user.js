@@ -82,11 +82,17 @@ function postUser(){
         var user = document.querySelector("#postInputUser").value;
         var group = document.querySelector("#postInputGroup").value;
         var organization = document.querySelector("#postInputOrganization").value;
+        var email = document.querySelector("#inputEmail").value;
                 
         $.ajax({
             type: "POST",
             url: config() + "/users",
-            data : {'username':user, 'organization': organization, 'password': pass, 'group': organization},
+            data : {'username':user,
+                    'organizationas': organization, 
+                    'password': pass, 
+                    'groups': organization,
+                    'email': email
+                    },
             
             
              }).done(function (response) {
@@ -177,7 +183,26 @@ function getUsers(){
                    
                 }
             }
-        
+            
+            // list email -------------------------------------- 
+                
+            
+                if (  list[i]['email'] != null ){
+                    
+                    newlink = document.createElement('a');
+                    newlink.setAttribute('class',"list-group-item  list-group-item-warning ");                
+                    newlink.setAttribute('id', "email" + username);
+                    var t = document.createTextNode("Email");
+                    newlink.appendChild(t);
+                    document.getElementById(username).appendChild(newlink);    
+                    
+                    newlink = document.createElement('a');
+                    newlink.setAttribute('class',"list-group-item list-group-item-action ");   
+                    var t = document.createTextNode(list[i]['email']);
+                    newlink.appendChild(t);
+                    document.getElementById("email" + username ).appendChild(newlink);
+                };
+                
 
         }; 
 

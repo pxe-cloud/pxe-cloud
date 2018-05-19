@@ -45,7 +45,7 @@ function getOrganization(){
                     newlink = document.createElement('a');
                     newlink.setAttribute('class',"list-group-item list-group-item-action ");                
                     //
-                    var texts = await uerGetGroups(list[i]['groups'][x]);
+                    var texts = await userGetGroups(list[i]['groups'][x]);
                     var t = document.createTextNode(texts);
                     //var t = document.createTextNode(list[i]['groups'][x]);
                     newlink.appendChild(t);

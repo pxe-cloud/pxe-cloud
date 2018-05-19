@@ -1,5 +1,7 @@
 $(document).ready(() => {
-    
+
+
+
 
 // -------------------------------------
 for ( var i = 0; i < itemMenus.length; i++){
@@ -7,47 +9,10 @@ for ( var i = 0; i < itemMenus.length; i++){
 };
 document.getElementById("Home").style.display = "block";
 
-    
-// -----------------------------------------------------------
-
-
 });
 
 
-
-
-// registry user page registry -----------------------------------------
-
-function functionRegistry(){
-    
-    var pass = document.querySelector("[name=password]").value;
-    var confirm = document.querySelector("[name=confirmPasswors]").value;
-        
-
-    if ( pass == confirm ){ 
-        
-        var user = document.querySelector("[name=username]").value;
-        
-        $.ajax({
-            type: "POST",
-            url: config() + "/users",
-            data : {'username':user,
-                    'password': pass},
-            
-            
-             }).done(function (response) {
-                var answer = response.response;
-                functionAlert(answer);
-
-        });
-    
-    } else {
-        var answer =  "Error, password does not match";
-        functionAlert(answer);
-    }
-
-}
-
+// alert below the navbar with database response
 function functionAlert(answer){
     if (answer.indexOf("Succes") > -1 ){
         var tipe = "alert alert-success";

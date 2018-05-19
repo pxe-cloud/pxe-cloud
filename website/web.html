@@ -588,14 +588,15 @@
                 <label for="postTypeImage" class="col-sm-3 col-form-label" title="This is the type of the image (iso, kernel_initrd)">Type image</label>
                 <div class="col-sm-9">
                         <select class="form-control" id="postTypeImage">
-                            <option value="iso">Iso</option>
-                            <option value="kernel_initrd">kernel_initrd</option>
+                            <option value="iso" onclick="hideOptions();" selected>Select type image</option>
+                            <option value="iso" onclick="isoOptions();" >Iso</option>
+                            <option value="kernel_initrd" onclick="imgOptions();">kernel_initrd</option>
                         </select>
                         <span class="help-block text-secondary">This is the type of the image (iso, kernel_initrd).</span>
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divImageSource">
                 <label for="postImageSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the image (iso, initramfs)">Image source</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="postImageSource" placeholder="Image source" >
@@ -603,7 +604,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divKernelSource" >
                 <label for="postKernelSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the kernel">KernelSource</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="postKernelSource" placeholder="Kernel Source" >
@@ -611,7 +612,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divRepositoryUrl" >
                 <label for="postRepositoryUrl" class="col-sm-3 col-form-label" title="This is the url of the repository (needed by Red Hat installers)">Repository url</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="postRepositoryUrl" placeholder="Repository url" >
@@ -619,7 +620,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divBootArgs">
                 <label for="postBootArgs" class="col-sm-3 col-form-label" title="Aditional parameters passsed to the isos when booting">Boot args</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="postBootArgs" placeholder="Boot args" >
