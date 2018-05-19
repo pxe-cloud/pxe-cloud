@@ -49,7 +49,7 @@ class MenuScript(Resource):
 
                 if image["type"] == "iso":
                     entries_menu += f":{normalized_title}\n"
-                    entries_menu += f"kernel {protocol}://{domain_name}/boot/{username}/{organization_id}/{group_id}/memdisk" + "?username=${username:uristring}&password=${password:uristring}\n"
+                    entries_menu += f"kernel memdisk\n"
                     entries_menu += f"initrd {image['image_source']}\n"
                     entries_menu += f"imgargs memdisk iso raw {' '.join([arg for arg in image['boot_args']])}\n"
 
