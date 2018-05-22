@@ -1,8 +1,6 @@
 $(document).ready(() => {
 
 
-
-
 // -------------------------------------
 for ( var i = 0; i < itemMenus.length; i++){
     document.getElementById(itemMenus[i]).style.display = "none";

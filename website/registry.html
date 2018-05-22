@@ -29,6 +29,7 @@
     <!-- mi js -->
     <script src="js/login.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/user.js"></script>
 
 </head>
 <body>
@@ -52,8 +53,11 @@
                 </div>
                 <div class="form-group row">
                     <label for="inputUser" class="col-sm-3 col-form-label">UserName *</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-7">
                         <input class="form-control" type="text" id="inputUser" placeholder="Username" name="username" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" id="buttonCheck2" onclick="verify('#inputUser','#buttonCheck2','users','username');" class="btn btn-secondary btn-block">Validate</button>
                     </div>
                 </div>
     

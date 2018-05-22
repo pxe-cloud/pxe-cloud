@@ -163,12 +163,32 @@ function GetGroups(id){
         var len = response.response.length;
         
         for (var i = 0; i < len; i++ ) {
+            var description = list[i]['description'];
+            var menu_id = list[i]['menu_id'];
+
             var groupList = list[i]['name'].length;  
             newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
+            newlink.setAttribute('value',list[i]['id']);      
+            newlink.setAttribute('onclick','valuesGroup("'+ description + '","'+ menu_id +'")');              
             var t = document.createTextNode(list[i]['name']);
             newlink.appendChild(t);
             document.getElementById(id).appendChild(newlink);
         ;}
     });
 }
+
+
+async function valuesGroup(descript,menu_id){
+    
+    if ( descript == "null" ){
+        descript = "";
+    }
+    document.querySelector("#putInputdescriptionGroup").value = descript ;
+
+    if ( menu_id != "null" ){
+        document.querySelector("#currentGroup").value = await groupGetMenus(menu_id);
+        
+    }
+}
+
+

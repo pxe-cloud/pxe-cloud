@@ -139,12 +139,24 @@ function GetOrganizations(id){
         var len = response.response.length;
         
         for (var i = 0; i < len; i++ ) {
+            var description = list[i]['description'];  
+
             var groupList = list[i]['name'].length;  
             newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
+            newlink.setAttribute('value',list[i]['id']);     
+            newlink.setAttribute('onclick','valuesOrg("'+ description + '")');              
             var t = document.createTextNode(list[i]['name']);
             newlink.appendChild(t);
             document.getElementById(id).appendChild(newlink);
         ;}
     });
+}
+
+
+function valuesOrg(descript){
+    
+    if ( descript == "null" ){
+        descript = "";
+    }
+    document.querySelector("#putInputdescriptionOrganization").value = descript ;
 }

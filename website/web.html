@@ -33,7 +33,7 @@
 
      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <!-- Brand/logo -->
-      <a class="navbar-brand" href="#" onclick="functionHome();"><img class="logoImg" src="img/logo2.png" width="60px" alt="Logo"></img> &nbsp; Pxe Cloud</a>
+      <a class="navbar-brand" href="#" onclick="reloadAndOpen('Home');"><img class="logoImg" src="img/logo2.png" width="60px" alt="Logo"></img> &nbsp; Pxe Cloud</a>
       
       
       <!-- Links -->
@@ -142,9 +142,13 @@
                   </div>
                   <div class="form-group row">
                       <label for="postInputUser" class="col-sm-3 col-form-label">UserName *</label>
-                      <div class="col-sm-9">
+                      <div class="col-sm-7">
                           <input class="form-control" type="text" id="postInputUser" placeholder="Username" name="username" required>
                       </div>
+                      
+                      <div class="col-sm-2">
+                            <button type="button" id="buttonCheck1" onclick="verify('#postInputUser','#buttonCheck1','users','username');" class="btn btn-secondary btn-block">Validate</button>
+                     </div>
                   </div>
       
   
@@ -284,9 +288,12 @@
               
               <div class="form-group row">
                   <label for="postNameGroup" class="col-sm-3 col-form-label">Group name *</label>
-                  <div class="col-sm-9">
+                  <div class="col-sm-7">
                       <input class="form-control" type="text" id="postNameGroup" placeholder="group name" required>
                   </div>
+                  <div class="col-sm-2">
+                        <button type="button" id="buttonCheckGroup" onclick="verify('#postNameGroup','#buttonCheckGroup','groups','name');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
               </div>
   
 
@@ -347,9 +354,12 @@
 
               <div class="form-group row">
                   <label for="putNameGroup" class="col-sm-3 col-form-label">New group name</label>
-                  <div class="col-sm-9">
+                  <div class="col-sm-7">
                       <input class="form-control" type="text" id="putNameGroup" placeholder="group name">
                   </div>
+                  <div class="col-sm-2">
+                        <button type="button" id="buttonCheckGroup2" onclick="verify('#putNameGroup','#buttonCheckGroup2','groups','name');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
               </div>
   
 
@@ -359,12 +369,19 @@
                       <input type="text" class="form-control" id="putInputdescriptionGroup" placeholder="Group description">
                   </div>
               </div>
+
+              <div class="form-group row">
+                <label for="currentGroup" class="col-sm-3 col-form-label">Current menu</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="currentGroup" placeholder="none menu" disabled>
+                </div>
+            </div>
+
               <div class="form-group row">
                       <label for="putInputMenuidGroup" class="col-sm-3 col-form-label">Name menu *</label>
                       <div class="col-sm-9">
                           <select name="selectMenu" class="form-control" id="putInputMenuidGroup"></select>
                        </div>
-                      <div  class="text-danger" id="demo"></div>
               </div>
 
               <div class="form-group row">
@@ -395,10 +412,13 @@
             <h2>Add organization</h2>
                 
             <div class="form-group row">
-                <label for="postNameOrganization" class="col-sm-3 col-form-label">Group name</label>
-                <div class="col-sm-9">
+                <label for="postNameOrganization" class="col-sm-3 col-form-label">Organization name</label>
+                <div class="col-sm-7">
                     <input type="text" class="form-control" id="postNameOrganization" placeholder="Organization name">
                 </div>
+                <div class="col-sm-2">
+                        <button type="button" id="buttonCheckOrg" onclick="verify('#postNameOrganization','#buttonCheckOrg','organizations','name');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
             </div>
 
             <div class="form-group row">
@@ -451,9 +471,12 @@
 
             <div class="form-group row">
                 <label for="putNameOrganization" class="col-sm-3 col-form-label">New organization name</label>
-                <div class="col-sm-9">
+                <div class="col-sm-7">
                     <input class="form-control" type="text" id="putNameOrganization" placeholder="group name">
                 </div>
+                <div class="col-sm-2">
+                        <button type="button" id="buttonCheckOrg2" onclick="verify('#putNameOrganization','#buttonCheckOrg2','organizations','name');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
             </div>
             <div class="form-group row">
                 <label for="putInputdescriptionOrganization" class="col-sm-3 col-form-label">Description</label>
@@ -478,9 +501,12 @@
                 
             <div class="form-group row">
                 <label for="postNameMenu" class="col-sm-3 col-form-label">Menu name *</label>
-                <div class="col-sm-9">
+                <div class="col-sm-7">
                     <input class="form-control" type="text" id="postNameMenu" placeholder="Menu name" required>
                 </div>
+                <div class="col-sm-2">
+                        <button type="button" id="buttonCheckMenu" onclick="verify('#postNameMenu','#buttonCheckMenu','menus','title');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
             </div>
 
             <div class="form-group row">
@@ -548,9 +574,12 @@
 
             <div class="form-group row">
                 <label for="editNameMenu" class="col-sm-3 col-form-label">New menu name</label>
-                <div class="col-sm-9">
+                <div class="col-sm-7">
                     <input class="form-control" type="text" id="editNameMenu" placeholder="New menu name">
                 </div>
+                <div class="col-sm-2">
+                        <button type="button" id="buttonCheckMenu2" onclick="verify('#editNameMenu','#buttonCheckMenu2','menus','title');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
             </div>
 
 
@@ -578,19 +607,22 @@
                 
             <div class="form-group row">
                 <label for="postNameImage" class="col-sm-3 col-form-label" title="This is the title of the image">Image name</label>
-                <div class="col-sm-9">
+                <div class="col-sm-7">
                     <input type="text" class="form-control" id="postNameImage" placeholder="Image name" >
                     <span class="help-block text-muted">This is the title of the image.</span>
                 </div>
+                <div class="col-sm-2">
+                        <button type="button" id="buttonCheckImage" onclick="verify('#postNameImage','#buttonCheckImage','images','title');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="postTypeImage" class="col-sm-3 col-form-label" title="This is the type of the image (iso, kernel_initrd)">Type image</label>
                 <div class="col-sm-9">
                         <select class="form-control" id="postTypeImage">
+                            <option value="iso" onclick="isoOptions('#divImageSource');" >Iso</option>
                             <option value="iso" onclick="hideOptions();" selected>Select type image</option>
-                            <option value="iso" onclick="isoOptions();" >Iso</option>
-                            <option value="kernel_initrd" onclick="imgOptions();">kernel_initrd</option>
+                            <option value="kernel_initrd" onclick="imgOptions('#divImageSource');">kernel_initrd</option>
                         </select>
                         <span class="help-block text-secondary">This is the type of the image (iso, kernel_initrd).</span>
                 </div>
@@ -672,24 +704,28 @@
 
             <div class="form-group row">
                 <label for="putNewNameImage" class="col-sm-3 col-form-label" title="This is the title of the image">New image name</label>
-                <div class="col-sm-9">
+                <div class="col-sm-7">
                     <input type="text" class="form-control" id="putNewNameImage" placeholder="Image name" >
                     <span class="help-block text-muted">This is the title of the image.</span>
                 </div>
+                <div class="col-sm-2">
+                        <button type="button" id="buttonCheckImage2" onclick="verify('#putNewNameImage','#buttonCheckImage2','images','title');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="putTypeImage" class="col-sm-3 col-form-label" title="This is the type of the image (iso, kernel_initrd)">Type image</label>
                 <div class="col-sm-9">
                         <select class="form-control" id="putTypeImage">
-                            <option value="iso">Iso</option>
-                            <option value="kernel_initrd">kernel_initrd</option>
+                            <option value="iso"  onclick="isoOptions('#divPutImageSource');" >Iso</option>
+                            <option value="default"  onclick="hideOptions();" selected>Select type image</option>
+                            <option value="kernel_initrd"  onclick="imgOptions();">kernel_initrd</option>
                         </select>
                         <span class="help-block text-secondary">This is the type of the image (iso, kernel_initrd).</span>
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divPutImageSource">
                 <label for="putImageSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the image (iso, initramfs)">Image source</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="putImageSource" placeholder="Image source" >
@@ -697,7 +733,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divPutKernelSource">
                 <label for="putKernelSource" class="col-sm-3 col-form-label" title="This is the url (the source) of the kernel">Kernel source</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="putKernelSource" placeholder="Kernel source" >
@@ -705,7 +741,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divPutRepositoryUrl">
                 <label for="putRepositoryUrl" class="col-sm-3 col-form-label" title="This is the url of the repository (needed by Red Hat installers)">Repository url</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="putRepositoryUrl" placeholder="Repository url" >
@@ -713,7 +749,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row d-none" id="divPutBootArgs">
                 <label for="putBootArgs" class="col-sm-3 col-form-label" title="Aditional parameters passsed to the isos when booting">Boot args</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="putBootArgs" placeholder="Boot args" >

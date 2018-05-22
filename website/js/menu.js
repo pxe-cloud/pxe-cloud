@@ -134,12 +134,23 @@ function GetMenus(id){
         var len = response.response.length;
         
         for (var i = 0; i < len; i++ ) {
+            var background = list[i]['background'];  
+
             newlink = document.createElement('option');
             newlink.setAttribute('value',list[i]['id']);                
+            newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
             var t = document.createTextNode(list[i]['title']);
             newlink.appendChild(t);
             document.getElementById(id).appendChild(newlink);
           
         ;}
     });
+}
+
+function valuesMenus(bac){
+    
+    if ( bac == "null" ){
+        bac = "";
+    }
+    document.querySelector("#editBackgroudMenu").value = bac ;
 }

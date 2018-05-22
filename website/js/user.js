@@ -249,3 +249,41 @@ async function userGetGroups(id){
     var abc = await ajaxGetUsers()
     return abc.response['name'];
 }
+
+// veryfi user -----------------------------------------
+function verify(idValue,idButton,type,name){
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": config() + "/" + type,
+        "method": "GET",
+        "headers": {}
+    }
+
+    $.ajax(settings).done(function (response) {
+
+        var list = response.response;
+        var len = response.response.length;
+        var username = document.querySelector(idValue).value;
+        
+        var users = [];
+        for (var i = 0; i < len; i++ ) {
+            users.push(list[i][name]);
+        }
+        
+        if ( users.includes(username) || username.length == 0 ){
+            var element = document.querySelector(idButton);
+            element.classList.remove("btn-secondary");
+            element.classList.remove("btn-success");
+            element.classList.add("btn-danger");
+        } else {
+            var element = document.querySelector(idButton);
+            element.classList.remove("btn-secondary");
+            element.classList.remove("btn-danger");
+            element.classList.add("btn-success");
+        }
+    
+    });
+};
+
+

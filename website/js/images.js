@@ -45,32 +45,6 @@ function deleteImage(){
 
 };
 
-function GetImages(id){
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": config() + "/images",
-        "method": "GET",
-        "headers": {}
-    }
-
-    $.ajax(settings).done(function (response) {
-
-        var list = response.response;
-        var len = response.response.length;
-        
-        for (var i = 0; i < len; i++ ) {
-            newlink = document.createElement('option');
-            newlink.setAttribute('value',list[i]['id']);                
-            var t = document.createTextNode(list[i]['title']);
-            newlink.appendChild(t);
-            
-            document.getElementById(id).appendChild(newlink);
-            
-            
-        ;}
-    });
-}
 
 // Edit images --------------------------------------------------------------
 function putImages(){
@@ -178,13 +152,16 @@ function getImages(){
 };
 
 // select post options 
-var options = ["#divImageSource","#divKernelSource","#divRepositoryUrl","#divBootArgs"];
-function isoOptions(){
+
+var options = ["#divImageSource","#divKernelSource","#divRepositoryUrl","#divBootArgs",
+            "#divPutImageSource","#divPutKernelSource","#divPutRepositoryUrl","#divPutBootArgs"];
+
+function isoOptions(divvisible){
     for ( var i = 0; i < options.length; i++ ){
         var element = document.querySelector(options[i]);
         element.classList.add("d-none");
     }
-    var element = document.querySelector("#divImageSource");
+    var element = document.querySelector(divvisible);
     element.classList.remove("d-none");
 }
 
@@ -193,8 +170,6 @@ function imgOptions(){
         var element = document.querySelector(options[i]);
         element.classList.remove("d-none");
     }
-    var element = document.querySelector("#divImageSource");
-    element.classList.add("d-none");
 }
 
 function hideOptions(){
@@ -203,3 +178,59 @@ function hideOptions(){
         element.classList.add("d-none");
     }
 }
+
+// otions images -------------------------
+function GetImages(id){
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": config() + "/images",
+        "method": "GET",
+        "headers": {}
+    }
+
+    $.ajax(settings).done(function (response) {
+
+        var list = response.response;
+        var len = response.response.length;
+        
+        for (var i = 0; i < len; i++ ) {
+            var type = list[i]['type'];  
+            var repository_url = list[i]['repository_url'];  
+            var kernel_source = list[i]['kernel_source'];  
+            var image_source = list[i]['image_source']; 
+            var boot_args = list[i]['boot_args'];  
+            
+            newlink = document.createElement('option');
+            newlink.setAttribute('value',list[i]['id']);          
+            newlink.setAttribute('onclick','valuesImages("'+ type + '","'+repository_url+'","'+ kernel_source +'","'+ image_source +'","'+ boot_args +'")');         
+            var t = document.createTextNode(list[i]['title']);
+            newlink.appendChild(t);
+            
+            document.getElementById(id).appendChild(newlink);
+            
+            
+        ;}
+    });
+}
+
+function valuesImages(type, repository_url, kernel_source, image_source, boot_args){
+    
+    
+    if ( type == "iso" ){
+        isoOptions('#divPutImageSource');
+    } else if ( type == "kernel_initrd" ){
+        imgOptions('#divPutImageSource');
+    }
+
+    document.querySelector("#putTypeImage").value = type ;
+    document.querySelector("#putImageSource").value = image_source ;
+    document.querySelector("#putKernelSource").value = kernel_source ;
+    document.querySelector("#putRepositoryUrl").value = repository_url ;
+    document.querySelector("#putBootArgs").value = boot_args ;
+
+    
+}
+
+
+
