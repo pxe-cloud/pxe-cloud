@@ -13,6 +13,7 @@ from api.resources.groups_resource import Groups
 from api.resources.group_resource import Group
 from api.resources.menus_resource import Menus
 from api.resources.menu_resource import Menu
+from api.resources.menus.menu_entry_resource import MenuEntry
 from api.resources.images_resource import Images
 from api.resources.image_resource import Image
 from api.resources.boot.auth_resource import BootAuth
@@ -35,6 +36,7 @@ def add_endpoints(api):
     api.add_resource(Group, "/group/<group_id>")
     api.add_resource(Menus, "/menus")
     api.add_resource(Menu, "/menu/<menu_id>")
+    api.add_resource(MenuEntry, "/menu/<menu_id>/entry/<int:entry_position>")
     api.add_resource(Images, "/images")
     api.add_resource(Image, "/image/<image_id>")
     api.add_resource(BootAuth, "/boot")
