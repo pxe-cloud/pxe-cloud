@@ -176,52 +176,126 @@ function hiddeMenuTypes(){
 }
 
 function addItem(){
-    var element = document.querySelector("#divFinalMenu");
-    element.classList.remove("d-none");
+    postItem()
+    reloadEntries()
+    // var element = document.querySelector("#divFinalMenu");
+    // element.classList.remove("d-none");
 
+    // var type = document.querySelector("#selectTypeItemMenu").value;
+    // var imageId = document.querySelector("#selectIdImage").value;
+    // var content = document.querySelector("#divItemsIdContent").value;
+
+    // if ( type == "image"){
+    //     myfunction(type,imageId);
+    // } else if ( type == "separator" ){
+    //     myfunction(type,content);
+    // }
+}
+
+
+
+
+
+
+
+
+// function myfunction(type,data){
+
+//     newlink = document.createElement('li');
+//     newlink.setAttribute('class',"list-group-item");                
+//     newlink.setAttribute('id',data);
+//     //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
+//     var t = document.createTextNode(type);
+//     newlink.appendChild(t);
+//     document.getElementById("sortable").appendChild(newlink);
+
+//     newlink = document.createElement('span');
+//     //newlink.setAttribute('class',"list-group-item");                
+//     //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
+//     var t = document.createTextNode(data);
+//     newlink.appendChild(t);
+//     document.getElementById(data).appendChild(newlink);
+
+// }
+
+
+
+
+
+
+function postItem(){
     var type = document.querySelector("#selectTypeItemMenu").value;
     var imageId = document.querySelector("#selectIdImage").value;
     var content = document.querySelector("#divItemsIdContent").value;
 
     if ( type == "image"){
-        myfunction(type,imageId);
+        var data = {'type': type, 'image_id': imageId}
     } else if ( type == "separator" ){
-        myfunction(type,content);
+        var data = {'type': type, 'content': content}
     }
+    
+    $.ajax({
+        type: "POST",
+        url: config() + "/menu/36977223-08f6-4b6a-9811-62e735d0255b/entry/0",
+        data : data}
+
+            ).done(function (response) {
+                var answer = response.response;
+                functionAlert(answer);
+                    
+    });
+};
+
+function reloadEntries() {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": config() + "/menu/36977223-08f6-4b6a-9811-62e735d0255b",
+        "method": "GET",
+        "headers": {}
+    }
+
+    $.ajax(settings).done(function (response) {
+
+        var list = response.response.entries;
+        var len = response.response.entries.length;
+
+        function compare(a,b) {
+            if (a.position < b.position)
+              return -1;
+            if (a.position > b.position)
+              return 1;
+            return 0;
+        }
+        list = list.sort(compare)
+        
+        $('#sortable').empty()
+        for (var i = 0; i < len; i++ ) {
+            newlink = document.createElement('li');
+            newlink.setAttribute('class',"list-group-item");                
+            newlink.setAttribute('id', list[i]['position']);
+            newlink.setAttribute('data-database-position', list[i]['position'])
+            newlink.setAttribute('data-initial-position', i)
+            //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
+            var t = document.createTextNode(list[i]['type']);
+            newlink.appendChild(t);
+            document.getElementById("sortable").appendChild(newlink);
+
+            newlink = document.createElement('span');
+            //newlink.setAttribute('class',"list-group-item");                
+            //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
+            var t = document.createTextNode(list[i]['type']);
+            newlink.appendChild(t);
+            document.getElementById(list[i]['position']).appendChild(newlink);          
+        }
+
+        // Sort the li items using their DB position
+        // https://stackoverflow.com/questions/21600802/jquery-sort-list-based-on-data-attribute-value/21600865
+        // $("#sortable li").sort(sort_li).appendTo('#sortable');
+        // function sort_li(a, b){
+        //     return ($(b).data('database-position')) < ($(a).data('database-position')) ? 1 : -1;    
+        // }
+
+
+    });
 }
-
-
-
-
-
-
-
-
-function myfunction(type,data){
-
-    newlink = document.createElement('li');
-    newlink.setAttribute('class',"list-group-item");                
-    newlink.setAttribute('id',data);
-    //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
-    var t = document.createTextNode(type);
-    newlink.appendChild(t);
-    document.getElementById("sortable").appendChild(newlink);
-
-    newlink = document.createElement('span');
-    //newlink.setAttribute('class',"list-group-item");                
-    //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
-    var t = document.createTextNode(data);
-    newlink.appendChild(t);
-    document.getElementById(data).appendChild(newlink);
-
-}
-
-
-
-
-
-
-
-
-
-

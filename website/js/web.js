@@ -1,15 +1,32 @@
 $(document).ready(() => {
 
 $( function() {
+    var entryInitialPos = null;
+    var entryNewPos = null;
 
     $( "#sortable" ).sortable({
 
         start: function (event, ui) {
-        var entryInitialPos = ui.item.index()
+            entryInitialPos = ui.item.data('database-position');
+            console.log(entryInitialPos)
         },
         stop: function( event, ui ) {
-        var entryNewPos = ui.item.index()
-        
+            entryNewPos = ui.item.index()
+
+            $.ajax({
+                type: "PUT",
+                url: config() + "/menu/36977223-08f6-4b6a-9811-62e735d0255b/entry/" + entryInitialPos,
+                data : {'new_position': entryNewPos},
+                
+                
+                }).done(function (response) {
+                    alert(response.response)
+                    var answer = response.response;
+                    functionAlert(answer);
+
+            });
+            
+            reloadEntries()
         }
     })
     $( "#sortable" ).disableSelection();
@@ -114,7 +131,7 @@ function get(idItemToOpen) {
         }  else if ( idItemToOpen == "menuPost" ){
             GetImages("selectIdImage");
             hiddeMenuTypes();
-
+            reloadEntries();
     // images -----------------------------------------
         } else if ( idItemToOpen == "imagesGet" ){
             getImages();
