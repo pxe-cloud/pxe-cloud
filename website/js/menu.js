@@ -236,7 +236,8 @@ function postItem(){
     
     $.ajax({
         type: "POST",
-        url: config() + "/menu/36977223-08f6-4b6a-9811-62e735d0255b/entry/0",
+        // TODO: Change the post position to the last one
+        url: config() + "/menu/8620f308-f431-4568-9196-6f61c687067e/entry/0",
         data : data}
 
             ).done(function (response) {
@@ -250,7 +251,7 @@ function reloadEntries() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": config() + "/menu/36977223-08f6-4b6a-9811-62e735d0255b",
+        "url": config() + "/menu/8620f308-f431-4568-9196-6f61c687067e",
         "method": "GET",
         "headers": {}
     }
@@ -260,33 +261,27 @@ function reloadEntries() {
         var list = response.response.entries;
         var len = response.response.entries.length;
 
-        function compare(a,b) {
-            if (a.position < b.position)
-              return -1;
-            if (a.position > b.position)
-              return 1;
-            return 0;
-        }
-        list = list.sort(compare)
-        
         $('#sortable').empty()
         for (var i = 0; i < len; i++ ) {
             newlink = document.createElement('li');
             newlink.setAttribute('class',"list-group-item");                
-            newlink.setAttribute('id', list[i]['position']);
-            newlink.setAttribute('data-database-position', list[i]['position'])
-            newlink.setAttribute('data-initial-position', i)
-            //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
-            var t = document.createTextNode(list[i]['type']);
-            newlink.appendChild(t);
+            newlink.setAttribute('id', i);
+            newlink.setAttribute('data-initial-position', i) 
             document.getElementById("sortable").appendChild(newlink);
 
-            newlink = document.createElement('span');
-            //newlink.setAttribute('class',"list-group-item");                
-            //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
+            newlink = document.createElement('p');
+            if (list[i]['type'] == "image") {
+                var t = document.createTextNode(list[i]['image_id']);
+            } else if (list[i]['type'] == "separator") {
+                var t = document.createTextNode(list[i]['content']);
+            }
+            newlink.appendChild(t);
+            document.getElementById(i).appendChild(newlink);          
+
+            newlink = document.createElement('small')
             var t = document.createTextNode(list[i]['type']);
             newlink.appendChild(t);
-            document.getElementById(list[i]['position']).appendChild(newlink);          
+            document.getElementById(i).appendChild(newlink)
         }
 
         // Sort the li items using their DB position

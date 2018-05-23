@@ -5,28 +5,22 @@ $( function() {
     var entryNewPos = null;
 
     $( "#sortable" ).sortable({
-
-        start: function (event, ui) {
-            entryInitialPos = ui.item.data('database-position');
-            console.log(entryInitialPos)
-        },
         stop: function( event, ui ) {
+            entryInitialPos = ui.item.data('initial-position');
             entryNewPos = ui.item.index()
 
             $.ajax({
                 type: "PUT",
-                url: config() + "/menu/36977223-08f6-4b6a-9811-62e735d0255b/entry/" + entryInitialPos,
+                url: config() + "/menu/8620f308-f431-4568-9196-6f61c687067e/entry/" + entryInitialPos,
                 data : {'new_position': entryNewPos},
                 
                 
                 }).done(function (response) {
-                    alert(response.response)
                     var answer = response.response;
                     functionAlert(answer);
-
+                    reloadEntries()
             });
             
-            reloadEntries()
         }
     })
     $( "#sortable" ).disableSelection();
