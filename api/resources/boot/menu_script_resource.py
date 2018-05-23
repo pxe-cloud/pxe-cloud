@@ -51,17 +51,13 @@ class MenuScript(Resource):
                     entries_menu += f":{normalized_title}\n"
                     entries_menu += f"kernel {protocol}://{domain_name}/boot/{username}/{organization_id}/{group_id}/memdisk" + "?username=${username:uristring}&password=${password:uristring}\n"
                     entries_menu += f"initrd {image['image_source']}\n"
-                    entries_menu += f"imgargs memdisk iso raw {' '.join([arg for arg in image['boot_args']])}\n"
+                    entries_menu += "imgargs memdisk iso raw\n"
 
                 elif image["type"] == "kernel_initrd":
                     entries_menu += f":{normalized_title}\n"
-
-                    if "repository_url" in image:
-                        entries_menu += f"kernel {image['kernel_source']} repo={image['repository_url']}\n"
-
-                    else:
-                        entries_menu += f"kernel {image['kernel_source']}\n"
-
+                    entries_menu += f"kernel {image['kernel_source']} "
+                    entries_menu += f"{' '.join([key + '=' + value for key, value in image['boot_args'].items() if value])} "
+                    entries_menu += f"{' '.join([key for key, value in image['boot_args'].items() if not value])}\n"
                     entries_menu += f"initrd {image['image_source']}\n"
 
                 entries_menu += "boot\n"

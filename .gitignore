@@ -105,4 +105,4 @@ ENV/
 .idea
 
 # Images folder
-images/
+/images/
