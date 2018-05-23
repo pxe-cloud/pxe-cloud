@@ -37,7 +37,7 @@ class MenuScript(Resource):
         raw_menu = ""
         entries_menu = ""
 
-        for entry in sorted(menu["entries"], key=lambda item: item["position"]):
+        for entry in menu["entries"]:
             if entry["type"] == "separator":
                 raw_menu += f"item\nitem --gap -- ---- {entry['content']} ----\n"
 
