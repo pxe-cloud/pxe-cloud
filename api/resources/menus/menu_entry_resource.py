@@ -60,36 +60,20 @@ class MenuEntry(Resource):
 
             else:
                 new_entry = {
-                    "type": args["type"],
-                    "position": entry_position
+                    "type": args["type"]
                 }
                 if args["content"]: new_entry["content"] = args["content"]
                 if args["image_id"]: new_entry["image_id"] = args["image_id"]
 
-                try:
-                    # Check if there's already an entry in that position
-                    [index for index, dict in enumerate(entries) if dict["position"] == entry_position][0]
+                entries.insert(entry_position, new_entry)
 
-                # There's no entry in that position
-                except IndexError:
-                    pass
+                result = r.table("menus").get(menu_id).update({"entries": entries}).run(conn)
 
-                # There's already an entry in that position
+                if result["replaced"] == 1:
+                    return {"response": "Successfully added the entry to the menu!"}, 200
+
                 else:
-                    for index, entry in enumerate(entries):
-                        if entry["position"] >= entry_position:
-                            entries[index]["position"] += 1
-
-                finally:
-                    entries.append(new_entry)
-
-                    result = r.table("menus").get(menu_id).update({"entries": entries}).run(conn)
-
-                    if result["replaced"] == 1:
-                        return {"response": "Successfully added the entry to the menu!"}, 200
-
-                    else:
-                        return {"response": "Error 500! Internal server error!"}, 500
+                    return {"response": "Error 500! Internal server error!"}, 500
 
         else:
             return {"response": "Error 404! The menu wasn't found!"}, 404
@@ -110,29 +94,22 @@ class MenuEntry(Resource):
         if entries or entries == []:
             try:
                 # Check if there's already an entry in that position
-                entry_index = [index for index, entry in enumerate(entries) if entry["position"] == entry_position][0]
-                entry_to_update = entries[entry_index]
+                entry_to_update = entries[entry_position]
 
             # There's no entry in that position
             except IndexError:
                 return {"response": "Error 404! The entry wasn't found in the menu!"}, 404
 
-            # There's already an entry in that position
+            # There's an entry in that position
             else:
                 if args["content"] and entry_to_update["type"] != "separator":
                     return {"response": "Error 400! You can't provide content for an image!"}, 400
 
                 else:
-                    if args["new_position"]:
-                        for index, entry in enumerate(entries):
-                            if entry["position"] >= args["new_position"] and index != entry_index:
-                                entries[index]["position"] += 1
-
-                        entry_to_update["position"] = args["new_position"]
-
                     if args["content"]:
                         entry_to_update["content"] = args["content"]
 
+                    entries.insert(args["new_position"], entries.pop(entry_position))
                     result = r.table("menus").get(menu_id).update({"entries": entries}).run(conn)
 
                     if result["replaced"] == 1:
@@ -154,20 +131,15 @@ class MenuEntry(Resource):
 
         if entries or entries == []:
             try:
-                # Check if there's already an entry in that position
-                entry_index = [index for index, entry in enumerate(entries) if entry["position"] == entry_position][0]
+                # Check if there's already an entry in that position (and delete it)
+                del entries[entry_position]
 
             # There's no entry in that position
             except IndexError:
                 return {"response": "Error 404! The entry wasn't found in the menu!"}, 404
 
-            # There's already an entry in that position
+            # There was an entry on that position
             else:
-                del entries[entry_index]
-
-                for index, entry in enumerate(entries):
-                    if entry["position"] >= entry_position:
-                        entries[index]["position"] -= 1
 
                 result = r.table("menus").get(menu_id).update({"entries": entries}).run(
                     conn)
