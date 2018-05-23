@@ -44,10 +44,8 @@ function getOrganization(){
 
                     newlink = document.createElement('a');
                     newlink.setAttribute('class',"list-group-item list-group-item-action ");                
-                    //
                     var texts = await userGetGroups(list[i]['groups'][x]);
                     var t = document.createTextNode(texts);
-                    //var t = document.createTextNode(list[i]['groups'][x]);
                     newlink.appendChild(t);
                     document.getElementById("group" + organizationName ).appendChild(newlink);
                 };
@@ -60,9 +58,10 @@ function getOrganization(){
 
 // ---- add organization ----
 
-function postOrganization(){
+async function postOrganization(){
     var nameOrganization = document.querySelector("#postNameOrganization").value;
     var descriptionOrganization = document.querySelector("#postDescriptionOrganization").value;
+    var groupOrganization = document.querySelector("#postOrganizationSelectGroup").value;
     
     
     $.ajax({
@@ -71,6 +70,46 @@ function postOrganization(){
         data : {'name':nameOrganization, 'description': descriptionOrganization },
 
             }).done(function (response) {
+                var answer = response.response;
+                functionAlert(answer);
+                    
+    });
+
+
+    // search organization id
+    async function idOrg(){
+        
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": config() + "/organizations",
+            "method": "GET",
+            "headers": {}
+        }
+
+        const ajaxGetOrgs = () => {
+            return $.ajax(settings).done(function (response) {     
+                return  response.response;
+            });
+        }
+        var id = await ajaxGetOrgs()
+        return id;
+    }
+    // assign organization id to a variable
+    var list = await idOrg();
+    
+    for ( var i = 0; i < list.response.length; i ++ ){
+        if ( list.response[i]['name'] == nameOrganization ){
+            var idOrg = list.response[i]['id'];
+        }
+    }
+    
+    // add group to organization
+    $.ajax({
+        type: "POST",
+        url: config() + "/organization/" + idOrg + "/group/" + groupOrganization,
+        
+        }).done(function (response) {
                 var answer = response.response;
                 functionAlert(answer);
                     
@@ -86,7 +125,7 @@ function deleteOrganization(){
         
     $.ajax({
         type: "DELETE",
-        url: config() + "/group/" + idOrganization,
+        url: config() + "/organization/" + idOrganization,
              
         }).done(function (response) {
             var answer = response.response;
@@ -104,6 +143,7 @@ function putOrganization(){
     var nameOrganization = document.querySelector('[value="'+ idOrganization +'"]').textContent;
     var newNameOrganization = document.querySelector("#putNameOrganization").value;
     var descriptionOrganization = document.querySelector("#putInputdescriptionOrganization").value;
+    var idGroup = document.querySelector("#putOrganizationSelectGroup").value;
     
     if ( newNameOrganization.length > 1 ){
         nameOrganization = newNameOrganization
@@ -116,6 +156,17 @@ function putOrganization(){
         
         
             }).done(function (response) {
+                var answer = response.response;
+                functionAlert(answer);
+                    
+    });
+
+
+    $.ajax({
+        type: "POST",
+        url: config() + "/organization/" + idOrganization + "/group/" + idGroup,
+        
+        }).done(function (response) {
                 var answer = response.response;
                 functionAlert(answer);
                     

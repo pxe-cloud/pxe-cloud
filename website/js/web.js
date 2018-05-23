@@ -1,5 +1,19 @@
 $(document).ready(() => {
 
+$( function() {
+
+    $( "#sortable" ).sortable({
+
+        start: function (event, ui) {
+        var entryInitialPos = ui.item.index()
+        },
+        stop: function( event, ui ) {
+        var entryNewPos = ui.item.index()
+        
+        }
+    })
+    $( "#sortable" ).disableSelection();
+   } );
 
 // -------------------------------------
 for ( var i = 0; i < itemMenus.length; i++){
@@ -13,17 +27,17 @@ document.getElementById("Home").style.display = "block";
 // alert below the navbar with database response
 function functionAlert(answer){
     if (answer.indexOf("Succes") > -1 ){
-        var tipe = "alert alert-success";
+        var tipe = "container alert alert-success";
         var alert = answer;
     } else if ( answer.indexOf("Error") > -1 ){
-        var tipe = "alert alert-danger";
+        var tipe = "container alert alert-danger";
         var alert = answer;
     }
     
 	var newlink = document.createElement('div');
     newlink.setAttribute('class', tipe);                  
 	newlink.setAttribute('id', "Alert");  
-	document.querySelector("#demoAlert").appendChild(newlink);
+	document.querySelector("#demoAlert").after(newlink);
                   
 	var newlink = document.createTextNode(alert);
 	document.querySelector("#Alert").appendChild(newlink);
@@ -70,7 +84,7 @@ function get(idItemToOpen) {
         
         } else if ( idItemToOpen == "groupDelete" ){
             GetGroups("deleteSelectGroup");
-        
+            
         } else if ( idItemToOpen == "groupGet" ){
             getGroup(); 
     // organizations ------------------------
@@ -82,6 +96,11 @@ function get(idItemToOpen) {
         
         } else if ( idItemToOpen == "organizationEdit" ){
             GetOrganizations("putSelectOrganization");
+            GetGroups("putOrganizationSelectGroup");
+        
+        } else if ( idItemToOpen == "organizationsPost" ){
+            GetGroups("postOrganizationSelectGroup");
+
     // menus ------------------------------------------
         } else if ( idItemToOpen == "menuGet" ){
             getMenus();
@@ -91,6 +110,10 @@ function get(idItemToOpen) {
         
         } else if ( idItemToOpen == "menuPut" ){
             GetMenus("editSelectMenu");
+        
+        }  else if ( idItemToOpen == "menuPost" ){
+            GetImages("selectIdImage");
+            hiddeMenuTypes();
 
     // images -----------------------------------------
         } else if ( idItemToOpen == "imagesGet" ){

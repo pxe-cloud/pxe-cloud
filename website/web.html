@@ -14,6 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+    <!-- magia      -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- mi css -->
     <link href="css/web.css" rel="stylesheet"  type="text/css"> 
@@ -429,6 +431,13 @@
             </div>
 
             <div class="form-group row">
+                <label for="postOrganizationSelectGroup" class="col-sm-3 col-form-label">Group</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="postOrganizationSelectGroup"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <div class="col-sm-10">
                     <button type="button" onclick="postOrganization();" class="btn btn-info">Add</button>
                 </div>
@@ -486,6 +495,13 @@
             </div>
 
             <div class="form-group row">
+                <label for="putOrganizationSelectGroup" class="col-sm-3 col-form-label">Group</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="putOrganizationSelectGroup"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <div class="col-sm-10">
                     <button type="button" onclick="putOrganization();" class="btn btn-info">Edit</button>
                 </div>
@@ -513,13 +529,65 @@
                 <label for="postInputbackgroundMenu" class="col-sm-3 col-form-label">Background</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="postInputbackgroundMenu" placeholder="Url background">
+                    <span class="help-block text-secondary">only supports .png images.</span>
                 </div>
             </div>
-            
+            <!-- -------------------------------------------------------------------------------------------------------------------- -->
+            <div class="container">
+                <h3>Add items</h3>
+                <div class="form-group row">
+                    <label for="selectTypeItemMenu" class="col-sm-3 col-form-label">Type</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="selectTypeItemMenu">
+                            <option value="image" onclick="typeMenu('#divItemsIdImages');" >Image</option>
+                            <option   onclick="hiddeMenuTypes();" selected>Select type item</option>
+                            <option value="separator" onclick="typeMenu('#divItemsContent');" >Separator</option>
+                        </select>
+                        <span class="help-block text-secondary">This is the type of entry. It can be 'image' or 'separator'</span>
+                    </div>
+                </div>
 
+                <div class="form-group row" id="divItemsIdImages">
+                    <label for="selectIdImage" class="col-sm-3 col-form-label">Image</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="selectIdImage"></select>
+                        <span class="help-block text-secondary">This is the id of the image of the entry. Just avaliable if the type is 'image'</span>
+                    </div>
+                </div>
+
+                <div class="form-group row" id="divItemsContent">
+                    <label for="divItemsIdContent" class="col-sm-3 col-form-label">Content</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="divItemsIdContent" placeholder="Content">
+                        <span class="help-block text-secondary">This is the content (the text that shows) the separator. Just avaliable if the type is 'separator'</span>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group row" >
+                    <label for="itemsPosition" class="col-sm-3 col-form-label">Position</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="itemsPosition" placeholder="Position">
+                        <span class="help-block text-secondary">specify the position where to add the item, for example 1</span>
+                    </div>
+                </div> -->
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="button" onclick="addItem();" class="btn btn-info">Add item</button>
+                    </div>
+                </div>
+
+                <div class="container d-none" id="divFinalMenu">
+                    <h4>Final menu</h4>
+                    <ul class="list-group" id="sortable"></ul>
+                </div>
+
+
+            </div>
+            <!-- --------------------------------------------------------------------------------------------------------- -->
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="button" onclick="postMenu();" class="btn btn-info">Add</button>
+                    <button type="button" onclick="postMenu();" class="btn btn-info">Save menu</button>
                 </div>
             </div>
         </form>
@@ -539,7 +607,7 @@
         </form>
     </div>
     
-     <!-- Delete organization -->
+     <!-- Delete menu -->
      <div class="container mt-5 mb-5" id="menuDelete">
         
         <form class=" bg-light text-dark p-5 rounded">
@@ -587,6 +655,7 @@
                 <label for="editBackgroudMenu" class="col-sm-3 col-form-label">Background</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="editBackgroudMenu" placeholder="Url background">
+                    <span class="help-block text-secondary">only supports .png images.</span>
                 </div>
             </div>
                 

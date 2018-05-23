@@ -154,3 +154,74 @@ function valuesMenus(bac){
     }
     document.querySelector("#editBackgroudMenu").value = bac ;
 }
+
+
+
+function typeMenu(divvisible){
+    var options = ["#divItemsIdImages","#divItemsContent"];    
+    for ( var i = 0; i < options.length; i++ ){
+        var element = document.querySelector(options[i]);
+        element.classList.add("d-none");
+    }
+    var element = document.querySelector(divvisible);
+    element.classList.remove("d-none");
+}
+
+function hiddeMenuTypes(){
+    var options = ["#divItemsIdImages","#divItemsContent"];
+    for ( var i = 0; i < options.length; i++ ){
+        var element = document.querySelector(options[i]);
+        element.classList.add("d-none");
+    }
+}
+
+function addItem(){
+    var element = document.querySelector("#divFinalMenu");
+    element.classList.remove("d-none");
+
+    var type = document.querySelector("#selectTypeItemMenu").value;
+    var imageId = document.querySelector("#selectIdImage").value;
+    var content = document.querySelector("#divItemsIdContent").value;
+
+    if ( type == "image"){
+        myfunction(type,imageId);
+    } else if ( type == "separator" ){
+        myfunction(type,content);
+    }
+}
+
+
+
+
+
+
+
+
+function myfunction(type,data){
+
+    newlink = document.createElement('li');
+    newlink.setAttribute('class',"list-group-item");                
+    newlink.setAttribute('id',data);
+    //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
+    var t = document.createTextNode(type);
+    newlink.appendChild(t);
+    document.getElementById("sortable").appendChild(newlink);
+
+    newlink = document.createElement('span');
+    //newlink.setAttribute('class',"list-group-item");                
+    //newlink.setAttribute('onclick','valuesMenus("'+ background + '")');     
+    var t = document.createTextNode(data);
+    newlink.appendChild(t);
+    document.getElementById(data).appendChild(newlink);
+
+}
+
+
+
+
+
+
+
+
+
+

@@ -63,7 +63,26 @@ function editUser(){
             functionAlert(answer);
                 
             });
+    
+    $.ajax({
+        type: "POST",
+        url: config() + "/user/" + user + "/group/" + group,
+        
+            }).done(function (response) {
+            var answer = response.response;
+            functionAlert(answer);
+                    
+    });
 
+    $.ajax({
+        type: "POST",
+        url: config() + "/user/" + user + "/organization/" + organization,
+        
+            }).done(function (response) {
+            var answer = response.response;
+            functionAlert(answer);
+                    
+    });
 };
 
 
@@ -88,9 +107,7 @@ function postUser(){
             type: "POST",
             url: config() + "/users",
             data : {'username':user,
-                    'organizationas': organization, 
                     'password': pass, 
-                    'groups': organization,
                     'email': email
                     },
             
@@ -99,6 +116,24 @@ function postUser(){
                 var answer = response.response;
                 functionAlert(answer);
                      
+        });
+
+        $.ajax({
+            type: "POST",
+            url: config() + "/user/" + user + "/group/" + group,
+            
+             }).done(function (response) {
+                var answer = response.response;
+                functionAlert(answer);
+        });
+
+        $.ajax({
+            type: "POST",
+            url: config() + "/user/" + user + "/organization/" + organization,
+            
+             }).done(function (response) {
+                var answer = response.response;
+                functionAlert(answer);                
         });
     
     } else {
@@ -138,7 +173,26 @@ function getUsers(){
             newlink.appendChild(t);
             document.getElementById("listUsers").appendChild(newlink);
 
+            // list email -------------------------------------- 
             
+        
+            if (  list[i]['email'] != null ){
+                
+                newlink = document.createElement('a');
+                newlink.setAttribute('class',"list-group-item  list-group-item-warning ");                
+                newlink.setAttribute('id', "email" + username);
+                var t = document.createTextNode("Email");
+                newlink.appendChild(t);
+                document.getElementById(username).appendChild(newlink);    
+                
+                newlink = document.createElement('a');
+                newlink.setAttribute('class',"list-group-item list-group-item-action ");   
+                var t = document.createTextNode(list[i]['email']);
+                newlink.appendChild(t);
+                document.getElementById("email" + username ).appendChild(newlink);
+            };
+
+            // list groups
             var groupList = list[i]['groups'].length;
             for ( var x = 0; x < groupList; x++){
                 if (  list[i]['groups'][0] != null ){
@@ -159,7 +213,7 @@ function getUsers(){
                 };
             };
             
-            
+            // list organizations
             var organizationList = list[i]['organizations'].length;
             for ( var z = 0; z < organizationList; z++){
 
@@ -183,26 +237,7 @@ function getUsers(){
                    
                 }
             }
-            
-            // list email -------------------------------------- 
-                
-            
-                if (  list[i]['email'] != null ){
-                    
-                    newlink = document.createElement('a');
-                    newlink.setAttribute('class',"list-group-item  list-group-item-warning ");                
-                    newlink.setAttribute('id', "email" + username);
-                    var t = document.createTextNode("Email");
-                    newlink.appendChild(t);
-                    document.getElementById(username).appendChild(newlink);    
-                    
-                    newlink = document.createElement('a');
-                    newlink.setAttribute('class',"list-group-item list-group-item-action ");   
-                    var t = document.createTextNode(list[i]['email']);
-                    newlink.appendChild(t);
-                    document.getElementById("email" + username ).appendChild(newlink);
-                };
-                
+
 
         }; 
 
