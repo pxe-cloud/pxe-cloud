@@ -30,14 +30,13 @@ class BootArgs(Resource):
         Adds a new boot arg of an image
         """
         parser = reqparse.RequestParser()
-        parser.add_argument("key", type=str, help="The key of the boot argument")
+        parser.add_argument("arg", type=str, help="The 'key' of the boot argument. If the boot arg has no value, just add the arg")
         parser.add_argument("value", type=str, help="The value of the boot argument")
         args = parser.parse_args()
 
-        image = r.table("images").get(image_id)
         boot_args = dict(r.table("images").get(image_id).run(conn))["boot_args"]
-        boot_args[args["key"]] = args["value"]
-        result = image.update({"boot_args": boot_args}).run(conn)
+        boot_args[args["arg"]] = args["value"]
+        result = r.table("images").get(image_id).update({"boot_args": boot_args}).run(conn)
 
         if result["replaced"] == 1:
             return {"response": "Successfully added the boot argument!"}, 201
