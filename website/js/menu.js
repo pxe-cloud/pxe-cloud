@@ -265,7 +265,7 @@ function reloadEntries() {
         for (var i = 0; i < len; i++ ) {
             newlink = document.createElement('li');
             newlink.setAttribute('class',"list-group-item");                
-            newlink.setAttribute('id', i);
+            newlink.setAttribute('id', 'sortable-entry-' + i);
             newlink.setAttribute('data-initial-position', i) 
             document.getElementById("sortable").appendChild(newlink);
 
@@ -276,12 +276,12 @@ function reloadEntries() {
                 var t = document.createTextNode(list[i]['content']);
             }
             newlink.appendChild(t);
-            document.getElementById(i).appendChild(newlink);          
+            document.getElementById('sortable-entry-' + i).appendChild(newlink);
 
             newlink = document.createElement('small')
             var t = document.createTextNode(list[i]['type']);
             newlink.appendChild(t);
-            document.getElementById(i).appendChild(newlink)
+            document.getElementById('sortable-entry-' + i).appendChild(newlink)
         }
 
         // Sort the li items using their DB position
