@@ -5,7 +5,7 @@ network:
 
 # API settings
 api:
-  domain_name: "10.252.2.2"
+  domain_name: "10.25.2.2"
   protocol: "http"
 
 # RethinkDB settings

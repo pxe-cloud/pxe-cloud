@@ -29,7 +29,7 @@ class Organizations(Resource):
         Create a new organization
         """
         parser = reqparse.RequestParser()
-        parser.add_argument("name", type=str, help="This is the name of the organization")
+        parser.add_argument("name", required=True, type=str, help="This is the name of the organization")
         parser.add_argument("description", type=str, help="This is a small description of the organization")
         args = parser.parse_args()
 

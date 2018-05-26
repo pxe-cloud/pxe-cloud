@@ -24,19 +24,21 @@ async function postImages(){
                 functionAlert(answer);
                     
     });
-    var imageId = await imageGetId(titleImage);
-    
-    $.ajax({
-        type: "POST",
-        url: config() + "/image/" + imageId + "/boot-args",
-        data : {'arg':argument, 'value': argValue },
+
+    if ( ! isBlank(argument)){
+        var imageId = await imageGetId(titleImage);
         
-        
-            }).done(function (response) {
-                var answer = response.response;
-                functionAlert(answer);
-    }); 
-   
+        $.ajax({
+            type: "POST",
+            url: config() + "/image/" + imageId + "/boot-args",
+            data : {'arg':argument, 'value': argValue },
+            
+            
+                }).done(function (response) {
+                    var answer = response.response;
+                    functionAlert(answer);
+        }); 
+    }
 }
 
 async function imageGetId(title){

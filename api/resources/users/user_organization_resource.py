@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Imports
-from flask_restful import Resource, reqparse
+from flask_restful import Resource
 import rethinkdb as r
 
 # Decorators imports
