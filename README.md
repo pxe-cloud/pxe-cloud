@@ -51,7 +51,67 @@ The code is separated in two big folders:
 
 The database is structurated as the following:
 
-# <u>*TODO*</u>: DATABASE DIAGRAM
+```
+ USERS
++------------------------------------------+
+|                                          |
+|  username    PK    string                |
+|  password          string                |
+|  email             string                |
+|  organizations     array of strings (FK) +----+
+|  groups            array of strings (FK) +----+----+
+|                                          |    |    |
++------------------------------------------+    |    |
+                                                |    |
+ ORGANIZATIONS                                  |    |
++------------------------------------------+    |    |
+|                                          |    |    |
+|  id          PK    string                |<---+    |
+|  name              string                |         |
+|  description       string                |         |
+|  groups            array of strings (FK) +----+    |
+|                                          |    |    |
++------------------------------------------+    |    |
+                                                |    |
+ GROUPS                                         |    |
++--------------------------------+              |    |
+|                                |              |    |
+|  id          PK    string      |<-------------+----+
+|  name              string      |
+|  description       string      |
+|  menu              sitrng (FK) +----+
+|                                |    |
++--------------------------------+    |
+                                      |
+ MENUS                                |
++---------------------------+         |
+|                           |         |
+|  id          PK    string |<--------+
+|  title             string |
+|  background        string |
+|  entries           array  |
+|     type           string |
+|       "image"             |
+|       "separator"         |
+|   * image_id FK    string +----------------------------------------------+
+|   * content        string |                                              |
++---------------------------+                                              |
+* If type is image, the field content isn't going to exist and viceversa    |
+                                                                           |
+ IMAGE                                                                     |
++---------------------------+                                              |
+|                           |                                              |
+| id           PK    string |<---------------------------------------------+
+| title              string |
+| type               string |
+|     iso                   |
+|     kernel_initrd         |
+| kernel_source      string |
+| image_source       string |
+| boot_args          array  |
+|                           |
++---------------------------+
+```
 
 
 
