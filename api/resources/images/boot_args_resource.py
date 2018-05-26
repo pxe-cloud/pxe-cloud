@@ -30,7 +30,7 @@ class BootArgs(Resource):
         Adds a new boot arg of an image
         """
         parser = reqparse.RequestParser()
-        parser.add_argument("arg", type=str, help="The 'key' of the boot argument. If the boot arg has no value, just add the arg")
+        parser.add_argument("arg", required=True, type=str, help="The 'key' of the boot argument. If the boot arg has no value, just add the arg")
         parser.add_argument("value", type=str, help="The value of the boot argument")
         args = parser.parse_args()
 
