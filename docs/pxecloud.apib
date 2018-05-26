@@ -1,0 +1,280 @@
+FORMAT: 1A
+HOST: https://api.pxecloud.tk
+
+# PXE Cloud API
+
+This is the API documentation for the [PXE Cloud](https://github.com/pxe-cloud/pxe-cloud) project
+
+
+
+# Group Users Resources
+
+## Users [/users]
+
+### Return all the existing users [GET]
+
+### Create a new user [POST]
+
++ Request (application/json)
+
+            {
+                "username": "nefix",
+                "password": "p4$$w0rd",
+                "email": "nefix@estrada.com"
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /user/nefix
+
+    + Body
+
+            {
+                "response": "Successfully created the user!"
+            }
+
++ Response 409 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 409! The user already exists!"
+            }
+
+
+## User [/user/{username}]
+
++ Parameters
+    + username: nefix (string) - The username of the user
+
+### Get a specific user using the username [GET]
+
+### Update an existing user using the username [PUT]
+
++ Request (application/json)
+
+            {
+                "password": "1234",
+                "email": "nefix@nefix.tk"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "response": "Successfully updated the user!"
+            }
+
++ Response 400 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 400! Please make changes!"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 404! User not found!"
+            }
+
+### Delete an existing user using the username [DELETE]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "response": "Successfully deleted the user!"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 404! The user wasn't found!"
+            }
+
+
+## User Organization [/user/{username}/organization/{organization_id}]
+
++ Parameters
+    + username: nefix (string) - The username of the user
+    + organization_id: `e333344c-ad83-468d-bdb4-df94a89176fc` (string) - The ID of the organization
+
+### Add an existing user to an existing organization [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "response": "Successfully added the user to the organization!"
+            }
+
++ Response 409 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 409! The user is already in the organization!"
+            }
+
+### Remove an existing user from an existing organization [DELETE]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "response": "Successfully removed the user from the organization!"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 404! The user isn't in the organization!"
+            }
+
+
+## User Group [/user/{username}/group/{group_id}]
+
+### Add an existing user to an existing group [POST]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "response": "Successfully added the user to the group!"
+            }
+
++ Response 409 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 409! The user is already in the group!"
+            }
+
+### Remove an existing user from an existing group [DELETE]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "response": "Successfully removed the user form the group!"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "response": "Error 404! The user isn't in the group!"
+            }
+
+
+
+# Group Organizations Resources
+
+## Organizations [/organizations]
+
+### Return all the existing organizations [GET]
+
+### Create a new organization [POST]
+
+
+## Organization [/organization/{organization_id}]
+
+### Get a specific organization using the ID  [GET]
+
+### Update an existing organization using the ID [PUT]
+
+### Update an existing organization using the ID [DELETE]
+
+
+## Organization Group [/organization/{organization_id}/group/{group_id}]
+
+### Add an existing group to an existing organization [GET]
+
+### Remove an existing group from an existing organization [DELETE]
+
+
+
+# Group Groups Resources
+
+## Groups [/groups]
+
+### Retrieve all the existing groups [GET]
+
+### Create a new group [POST]
+
+
+## Group [/group/{group_id}]
+
+###  Get a specific group using the ID  [GET]
+
+### Update an existing group using the ID [PUT]
+
+### Delete an existing group using the ID [DELETE]
+
+
+
+# Group Menus Resources
+
+## Menus [/menus]
+
+### Return all the existing menus [GET]
+
+### Create a new menu [POST]
+
+
+## Menu [/menu/{menu_id}]
+
+### Get a specific menu using the ID  [GET]
+
+### Update an existing menu using the ID [PUT]
+
+### Delete an existing menu using the ID [DELETE]
+
+
+## Menu Entry [/menu/{menu_id}/entry/{entry_position}]
+
+### Get an specific entry using it's position on the menu [GET]
+
+### Create a new entry in a specific position in an existing menu [POST]
+If there's already an entry in that position, move that one and all the following one position down and insert the new one there
+
+### Update the content field or change the position of an existing menu entry in an existing menu [PUT]
+
+### Delete an existing menu entry in an existing menu [DELETE]
+
+
+
+# Group Images Resources
+
+## Images [/images]
+
+### Return all the existing images [GET]
+
+### Create a new image [POST]
+
+
+## Image [/image/{image_id}]
+
+### Get a specific image using the ID  [GET]
+
+### Update an existing image using the ID [PUT]
+
+### Delete an existing image using the ID [DELETE]
