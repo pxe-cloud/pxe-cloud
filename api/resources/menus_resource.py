@@ -29,7 +29,7 @@ class Menus(Resource):
         Create a new menu
         """
         parser = reqparse.RequestParser()
-        parser.add_argument("title", type=str, help="This is the title of the menu")
+        parser.add_argument("title", required=True, type=str, help="This is the title of the menu")
         parser.add_argument("background", type=str, help="This is the background image of the menu")
         args = parser.parse_args()
 

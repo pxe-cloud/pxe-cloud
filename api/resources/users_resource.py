@@ -32,9 +32,9 @@ class Users(Resource):
         Create a new user
         """
         parser = reqparse.RequestParser()
-        parser.add_argument("username", type=str, help="This is the username of the user")
-        parser.add_argument("password", type=str, help="This is the password of the user")
-        parser.add_argument("email", type=str, help="This is the email address of the user")
+        parser.add_argument("username", required=True, type=str, help="This is the username of the user")
+        parser.add_argument("password", required=True, type=str, help="This is the password of the user")
+        parser.add_argument("email", required=True, type=str, help="This is the email address of the user")
         args = parser.parse_args()
 
         result = r.table("users").insert([{

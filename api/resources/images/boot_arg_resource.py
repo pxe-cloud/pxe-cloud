@@ -37,7 +37,7 @@ class BootArg(Resource):
         Update an existing boot arg
         """
         parser = reqparse.RequestParser()
-        parser.add_argument("value", type=str, help="The value of the boot argument")
+        parser.add_argument("value", required=True, type=str, help="The value of the boot argument")
         args = parser.parse_args()
 
         boot_args = r.table("images").get(image_id).run(conn)["boot_args"]
