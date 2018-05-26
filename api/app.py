@@ -18,7 +18,3 @@ api = Api(app)
 
 # Add endpoints
 add_endpoints(api)
-
-# Run the app
-network_settings = read_settings("network")
-app.run(port=network_settings["api_port"], debug=True, host=network_settings["host_ip"])
