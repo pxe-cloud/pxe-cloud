@@ -57,7 +57,7 @@ class GroupsScript(Resource):
                 ipxe_script = generate_menu(username, args["password"], "Choose group", raw_menu, entries_menu)
 
             else:
-                ipxe_script = f"#!ipxe\nset username={username}\nset password={args['password']}\nchain {protocol}://{domain_name}/boot/{username}/{organization_id}/{organization_user_group_id}" + "?username=${username:uristring}&password=${password:uristring}\n"
+                ipxe_script = f"#!ipxe\nset username={username}\nset password={args['password']}\nchain {protocol}://{domain_name}/boot/{username}/{organization_id}/{group_id}" + "?username=${username:uristring}&password=${password:uristring}\n"
 
         else:
             ipxe_script = f"#!ipxe\nset username={username}\nset password={args['password']}\nchain {protocol}://{domain_name}/boot/{username}/{organization_id}/{user['groups'][0]}" + "?username=${username:uristring}&password=${password:uristring}\n"
