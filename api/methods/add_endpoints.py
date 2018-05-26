@@ -2,20 +2,20 @@
 # -*- coding: utf-8 -*-
 
 # Resources imports
-from api.resources.users_resource import Users
-from api.resources.user_resource import User
+from api.resources.users.users_resource import Users
+from api.resources.users.user_resource import User
 from api.resources.users.user_organization_resource import UserOrganization
 from api.resources.users.user_group_resource import UserGroup
-from api.resources.organizations_resource import Organizations
-from api.resources.organization_resource import Organization
+from api.resources.organizations.organizations_resource import Organizations
+from api.resources.organizations.organization_resource import Organization
 from api.resources.organizations.organization_group_resource import OrganizationGroup
-from api.resources.groups_resource import Groups
-from api.resources.group_resource import Group
-from api.resources.menus_resource import Menus
-from api.resources.menu_resource import Menu
+from api.resources.groups.groups_resource import Groups
+from api.resources.groups.group_resource import Group
+from api.resources.menus.menus_resource import Menus
+from api.resources.menus.menu_resource import Menu
 from api.resources.menus.menu_entry_resource import MenuEntry
-from api.resources.images_resource import Images
-from api.resources.image_resource import Image
+from api.resources.images.images_resource import Images
+from api.resources.images.image_resource import Image
 from api.resources.images.boot_args_resource import BootArgs
 from api.resources.images.boot_arg_resource import BootArg
 from api.resources.boot.auth_resource import BootAuth

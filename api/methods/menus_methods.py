@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Imports
-import rethinkdb as r
-
-# Decorators imports
-from api.decorators.rethinkdb_decorators import rethinkdb_connection
-
-# Methods imports
-from api.methods.strings_methods import normalize_string
-
 
 # Generate a menu
 def generate_menu(username, password, menu_title, items_to_add, entries_to_add, background_url=None):

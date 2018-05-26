@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 # Methods imports
-import json
 from api.methods.rethinkdb_methods import connect, close
 
 
