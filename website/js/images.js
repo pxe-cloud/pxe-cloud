@@ -1,12 +1,13 @@
 // post images --------------------------------------------------------------
-function postImages(){
+async function postImages(){
     
     var titleImage = document.querySelector("#postNameImage").value;
     var typeImage = document.querySelector("#postTypeImage").value;
     var imageSource = document.querySelector("#postImageSource").value;
     var kernelSource = document.querySelector("#postKernelSource").value;
-    var repositoryUrl = document.querySelector("#postRepositoryUrl").value;
-    var bootArgs = document.querySelector("#postBootArgs").value;
+
+    var argument = document.querySelector("#postArg").value;
+    var argValue = document.querySelector("#postValue").value;
     
     $.ajax({
         type: "POST",
@@ -15,8 +16,7 @@ function postImages(){
                 'type': typeImage, 
                 'image_source': imageSource,
                 'kernel_source': kernelSource,
-                'repository_url': repositoryUrl,
-                'boot_args': bootArgs },
+                },
         
         
             }).done(function (response) {
@@ -24,6 +24,43 @@ function postImages(){
                 functionAlert(answer);
                     
     });
+    var imageId = await imageGetId(titleImage);
+    
+    $.ajax({
+        type: "POST",
+        url: config() + "/image/" + imageId + "/boot-args",
+        data : {'arg':argument, 'value': argValue },
+        
+        
+            }).done(function (response) {
+                var answer = response.response;
+                functionAlert(answer);
+    }); 
+   
+}
+
+async function imageGetId(title){
+    
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": config() + "/images",
+        "method": "GET",
+        "headers": {}
+    }
+
+    const ajaxGetImageId = () => {
+        return $.ajax(settings).done(function (response) {     
+            return response.response;        
+        });
+    }
+    var abc = await ajaxGetImageId()
+    
+    for ( var i = 0; abc.response.length; i++ ){
+        if ( abc.response[i]['title'] == title ){
+            return abc.response[i]['id'];
+        }
+    }
 }
 
 
@@ -55,8 +92,6 @@ function putImages(){
     var typeImage = document.querySelector("#putTypeImage").value;
     var imageSource = document.querySelector("#putImageSource").value;
     var kernelSource = document.querySelector("#putKernelSource").value;
-    var repositoryUrl = document.querySelector("#putRepositoryUrl").value;
-    var bootArgs = document.querySelector("#putBootArgs").value;
     
     // if newgroup exist add newgroup at name group.
     if ( NewtitleImage.length > 1 ){
@@ -70,8 +105,7 @@ function putImages(){
                 'type': typeImage, 
                 'image_source': imageSource,
                 'kernel_source': kernelSource,
-                'repository_url': repositoryUrl,
-                'boot_args': bootArgs },
+                },
         
         
             }).done(function (response) {
@@ -124,7 +158,7 @@ function getImages(){
             newlink.appendChild(t);
             document.getElementById(imageTitle).appendChild(newlink);    
 
-            var itemList = ["type","image_source","kernel_source","repository_url","boot_args"];
+            var itemList = ["type","image_source","kernel_source"];
                         
             for ( var x = 0; x < itemList.length; x++ ){
                 var text = list[i][itemList[x]];
@@ -153,8 +187,8 @@ function getImages(){
 
 // select post options 
 
-var options = ["#divImageSource","#divKernelSource","#divRepositoryUrl","#divBootArgs",
-            "#divPutImageSource","#divPutKernelSource","#divPutRepositoryUrl","#divPutBootArgs"];
+var options = ["#divImageSource","#divKernelSource","#divArg","#divValue",
+            "#divPutImageSource","#divPutKernelSource"];
 
 function isoOptions(divvisible){
     for ( var i = 0; i < options.length; i++ ){
@@ -196,14 +230,12 @@ function GetImages(id){
         
         for (var i = 0; i < len; i++ ) {
             var type = list[i]['type'];  
-            var repository_url = list[i]['repository_url'];  
             var kernel_source = list[i]['kernel_source'];  
             var image_source = list[i]['image_source']; 
-            var boot_args = list[i]['boot_args'];  
             
             newlink = document.createElement('option');
             newlink.setAttribute('value',list[i]['id']);          
-            newlink.setAttribute('onclick','valuesImages("'+ type + '","'+repository_url+'","'+ kernel_source +'","'+ image_source +'","'+ boot_args +'")');         
+            newlink.setAttribute('onclick','valuesImages("'+ type + '","'+ kernel_source +'","'+ image_source +'")');         
             var t = document.createTextNode(list[i]['title']);
             newlink.appendChild(t);
             
@@ -214,7 +246,7 @@ function GetImages(id){
     });
 }
 
-function valuesImages(type, repository_url, kernel_source, image_source, boot_args){
+function valuesImages(type, kernel_source, image_source){
     
     
     if ( type == "iso" ){
@@ -226,9 +258,6 @@ function valuesImages(type, repository_url, kernel_source, image_source, boot_ar
     document.querySelector("#putTypeImage").value = type ;
     document.querySelector("#putImageSource").value = image_source ;
     document.querySelector("#putKernelSource").value = kernel_source ;
-    document.querySelector("#putRepositoryUrl").value = repository_url ;
-    document.querySelector("#putBootArgs").value = boot_args ;
-
     
 }
 

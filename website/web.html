@@ -510,29 +510,43 @@
     </div>
         
 <!-- --------------------------------- menus ------------------------------------------------------------------------ -->
-    <!-- add menu -->
-    <div class="container mt-5 mb-5" id="menuPost">
+    <!--edit menu -->
+    <div class="container mt-5 mb-5" id="menuPut" >
         <form class="bg-light text-dark p-5 rounded">
-            <h2>Add menu</h2>
-                
+            <h2>Edit menu</h2>
+            
             <div class="form-group row">
-                <label for="postNameMenu" class="col-sm-3 col-form-label">Menu name *</label>
-                <div class="col-sm-7">
-                    <input class="form-control" type="text" id="postNameMenu" placeholder="Menu name" required>
+                <label for="editSelectMenu" class="col-sm-3 col-form-label">Menu name</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="editSelectMenu"></select>
                 </div>
-                <div class="col-sm-2">
-                        <button type="button" id="buttonCheckMenu" onclick="verify('#postNameMenu','#buttonCheckMenu','menus','title');" class="btn btn-secondary btn-block">Validate</button>
-                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="postInputbackgroundMenu" class="col-sm-3 col-form-label">Background</label>
+                <label for="editNameMenu" class="col-sm-3 col-form-label">New menu name</label>
+                <div class="col-sm-7">
+                    <input class="form-control" type="text" id="editNameMenu" placeholder="New menu name">
+                </div>
+                <div class="col-sm-2">
+                        <button type="button" id="buttonCheckMenu2" onclick="verify('#editNameMenu','#buttonCheckMenu2','menus','title');" class="btn btn-secondary btn-block">Validate</button>
+                 </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="editBackgroudMenu" class="col-sm-3 col-form-label">Background</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="postInputbackgroundMenu" placeholder="Url background">
+                    <input type="text" class="form-control" id="editBackgroudMenu" placeholder="Url background">
                     <span class="help-block text-secondary">only supports .png images.</span>
                 </div>
             </div>
-            <!-- -------------------------------------------------------------------------------------------------------------------- -->
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" onclick="putMenu();" class="btn btn-info">Save</button>
+                </div>
+            </div>
+
             <div class="container">
                 <h3>Add items</h3>
                 <div class="form-group row">
@@ -563,33 +577,20 @@
                     </div>
                 </div>
 
-                <!-- <div class="form-group row" >
-                    <label for="itemsPosition" class="col-sm-3 col-form-label">Position</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" id="itemsPosition" placeholder="Position">
-                        <span class="help-block text-secondary">specify the position where to add the item, for example 1</span>
-                    </div>
-                </div> -->
-
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <button type="button" onclick="addItem();" class="btn btn-info">Add item</button>
                     </div>
                 </div>
 
-                <div class="container" id="divFinalMenu">
+                <div class="container d-none" id="divFinalMenu">
                     <h4>Final menu</h4>
                     <ul class="list-group" id="sortable"></ul>
                 </div>
 
 
             </div>
-            <!-- --------------------------------------------------------------------------------------------------------- -->
-            <!-- <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="button" onclick="postMenu();" class="btn btn-info">Save menu</button>
-                </div>
-            </div> -->
+            
         </form>
     </div>
 
@@ -628,40 +629,32 @@
         </form>
     </div>
 
-    <!-- edit menu -->
-    <div class="container mt-5 mb-5" id="menuPut">
+    <!-- Add menu -->
+    <div class="container mt-5 mb-5" id="menuPost">
         <form class=" bg-light text-dark p-5 rounded">
-            <h2>Edit menu</h2>
-                
+            <h2>Add menu</h2>
+                          
             <div class="form-group row">
-                <label for="editSelectMenu" class="col-sm-3 col-form-label">Menu name</label>
-                <div class="col-sm-9">
-                    <select class="form-control" id="editSelectMenu"></select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="editNameMenu" class="col-sm-3 col-form-label">New menu name</label>
+                <label for="postNameMenu" class="col-sm-3 col-form-label">Menu name *</label>
                 <div class="col-sm-7">
-                    <input class="form-control" type="text" id="editNameMenu" placeholder="New menu name">
+                    <input class="form-control" type="text" id="postNameMenu" placeholder="Menu name" required>
                 </div>
                 <div class="col-sm-2">
-                        <button type="button" id="buttonCheckMenu2" onclick="verify('#editNameMenu','#buttonCheckMenu2','menus','title');" class="btn btn-secondary btn-block">Validate</button>
+                        <button type="button" id="buttonCheckMenu" onclick="verify('#postNameMenu','#buttonCheckMenu','menus','title');" class="btn btn-secondary btn-block">Validate</button>
                  </div>
             </div>
 
-
             <div class="form-group row">
-                <label for="editBackgroudMenu" class="col-sm-3 col-form-label">Background</label>
+                <label for="postInputbackgroundMenu" class="col-sm-3 col-form-label">Background</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="editBackgroudMenu" placeholder="Url background">
+                    <input type="text" class="form-control" id="postInputbackgroundMenu" placeholder="Url background">
                     <span class="help-block text-secondary">only supports .png images.</span>
                 </div>
             </div>
-                
+
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="button" onclick="putMenu();" class="btn btn-info">Edit</button>
+                    <button type="button" onclick="postMenu();" class="btn btn-info">Add</button>
                 </div>
             </div>
         </form>
@@ -713,21 +706,23 @@
                 </div>
             </div>
 
-            <div class="form-group row d-none" id="divRepositoryUrl" >
-                <label for="postRepositoryUrl" class="col-sm-3 col-form-label" title="This is the url of the repository (needed by Red Hat installers)">Repository url</label>
+            <!-- -------------------------------------------------- -->
+            <div class="form-group row d-none" id="divArg" >
+                <label for="postArg" class="col-sm-3 col-form-label" title="The 'key' of the boot argument. If the boot arg has no value, just add the arg">Argument</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="postRepositoryUrl" placeholder="Repository url" >
-                    <span class="help-block text-secondary">This is the url of the repository (needed by Red Hat installers).</span>
+                    <input type="text" class="form-control" id="postArg" placeholder="Argument" >
+                    <span class="help-block text-secondary">The 'key' of the boot argument. If the boot arg has no value, just add the arg.</span>
                 </div>
             </div>
 
-            <div class="form-group row d-none" id="divBootArgs">
-                <label for="postBootArgs" class="col-sm-3 col-form-label" title="Aditional parameters passsed to the isos when booting">Boot args</label>
+            <div class="form-group row d-none container" id="divValue" >
+                <label for="postValue" class="col-sm-3 col-form-label" title="The value of the boot argument">Value</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="postBootArgs" placeholder="Boot args" >
-                    <span class="help-block text-secondary">Aditional parameters passsed to the isos when booting.</span>
+                    <input type="text" class="form-control" id="postValue" placeholder="Value" >
+                    <span class="help-block text-secondary">The value of the boot argument.</span>
                 </div>
             </div>
+            <!-- ------------------------------------------------------ -->
 
             <div class="form-group row">
                 <div class="col-sm-10">
@@ -810,21 +805,7 @@
                 </div>
             </div>
 
-            <div class="form-group row d-none" id="divPutRepositoryUrl">
-                <label for="putRepositoryUrl" class="col-sm-3 col-form-label" title="This is the url of the repository (needed by Red Hat installers)">Repository url</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="putRepositoryUrl" placeholder="Repository url" >
-                    <span class="help-block text-secondary">This is the url of the repository (needed by Red Hat installers).</span>
-                </div>
-            </div>
-
-            <div class="form-group row d-none" id="divPutBootArgs">
-                <label for="putBootArgs" class="col-sm-3 col-form-label" title="Aditional parameters passsed to the isos when booting">Boot args</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="putBootArgs" placeholder="Boot args" >
-                    <span class="help-block text-secondary">Aditional parameters passsed to the isos when booting.</span>
-                </div>
-            </div>
+            
 
             <div class="form-group row">
                 <div class="col-sm-10">

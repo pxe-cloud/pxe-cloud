@@ -1,30 +1,6 @@
 $(document).ready(() => {
 
-$( function() {
-    var entryInitialPos = null;
-    var entryNewPos = null;
 
-    $( "#sortable" ).sortable({
-        stop: function( event, ui ) {
-            entryInitialPos = ui.item.data('initial-position');
-            entryNewPos = ui.item.index()
-
-            $.ajax({
-                type: "PUT",
-                url: config() + "/menu/8620f308-f431-4568-9196-6f61c687067e/entry/" + entryInitialPos,
-                data : {'new_position': entryNewPos},
-                
-                
-                }).done(function (response) {
-                    var answer = response.response;
-                    functionAlert(answer);
-                    reloadEntries()
-            });
-            
-        }
-    })
-    $( "#sortable" ).disableSelection();
-   } );
 
 // -------------------------------------
 for ( var i = 0; i < itemMenus.length; i++){
@@ -41,18 +17,21 @@ function functionAlert(answer){
         var tipe = "container alert alert-success";
         var alert = answer;
     } else if ( answer.indexOf("Error") > -1 ){
-        var tipe = "container alert alert-danger";
+        var tipe = "container alert alert-danger ";
         var alert = answer;
     }
     
 	var newlink = document.createElement('div');
     newlink.setAttribute('class', tipe);                  
+    newlink.setAttribute('role', "Alert");  
 	newlink.setAttribute('id', "Alert");  
 	document.querySelector("#demoAlert").after(newlink);
                   
 	var newlink = document.createTextNode(alert);
 	document.querySelector("#Alert").appendChild(newlink);
 }
+
+
 
 // change to menus in web.html
 
@@ -121,11 +100,12 @@ function get(idItemToOpen) {
         
         } else if ( idItemToOpen == "menuPut" ){
             GetMenus("editSelectMenu");
-        
+            hiddeMenuTypes();
+            GetImages("selectIdImage");
+
         }  else if ( idItemToOpen == "menuPost" ){
             GetImages("selectIdImage");
-            hiddeMenuTypes();
-            reloadEntries();
+            
     // images -----------------------------------------
         } else if ( idItemToOpen == "imagesGet" ){
             getImages();
