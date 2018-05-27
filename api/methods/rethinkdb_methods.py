@@ -36,7 +36,6 @@ def setup():
     if db_name not in r.db_list().run(conn):
         r.db_create(db_name).run(conn)
         r.db(db_name).table_create("users", primary_key="username").run(conn)
-        r.db(db_name).table_create("users").run(conn)
         r.db(db_name).table_create("organizations").run(conn)
         r.db(db_name).table_create("groups").run(conn)
         r.db(db_name).table_create("menus").run(conn)
