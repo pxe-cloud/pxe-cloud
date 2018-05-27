@@ -146,7 +146,7 @@ function getImages(){
 
             newlink = document.createElement('a');
             newlink.setAttribute('class',"list-group-item list-group-item-info mb-2");
-            newlink.setAttribute('href', '#');
+            //newlink.setAttribute('href', '#');
             newlink.setAttribute('id', imageTitle);
             var t = document.createTextNode(list[i]['title']);
             newlink.appendChild(t);
@@ -159,7 +159,8 @@ function getImages(){
             var t = document.createTextNode("Items");
             newlink.appendChild(t);
             document.getElementById(imageTitle).appendChild(newlink);    
-
+            
+            // items images
             var itemList = ["type","image_source","kernel_source"];
                         
             for ( var x = 0; x < itemList.length; x++ ){
@@ -183,6 +184,35 @@ function getImages(){
                 }
 
             };
+
+            // items boot args
+            var keyBootArgs = Object.keys(list[i]["boot_args"]);
+            if ( ! keyBootArgs.length == 0 ){
+                for ( z in keyBootArgs){
+
+                    newlink = document.createElement('a');
+                    newlink.setAttribute('class',"list-group-item  list-group-item-warning ");                
+                    newlink.setAttribute('id', "itemsBootArgs" + imageTitle);
+                    var t = document.createTextNode("Boot_args");
+                    newlink.appendChild(t);
+                    document.getElementById("items" + imageTitle).appendChild(newlink); 
+                    
+                    newlink = document.createElement('a');
+                    newlink.setAttribute('class',"list-group-item  list-group-item-action "); 
+                    //newlink.setAttribute('id', "itemsBootArgs" + keyBootArgs[z] + imageTitle);                                       
+                    var t = document.createTextNode(keyBootArgs[z]);
+                    newlink.appendChild(t);
+                    document.getElementById("itemsBootArgs" + imageTitle).appendChild(newlink);
+
+                    newlink = document.createElement('a');
+                    newlink.setAttribute('class',"list-group-item  list-group-item-action "); 
+                    //newlink.setAttribute('id', "itemsBootArgs" + keyBootArgs[z] + imageTitle);                                       
+                    var t = document.createTextNode(list[i]["boot_args"][keyBootArgs[z]]);
+                    newlink.appendChild(t);
+                    document.getElementById("itemsBootArgs" + imageTitle).appendChild(newlink);
+                }
+            }
+
         };        
     });
 };
