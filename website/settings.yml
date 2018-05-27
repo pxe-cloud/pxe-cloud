@@ -5,8 +5,8 @@ network:
 
 # API settings
 api:
-  domain_name: "10.25.2.2"
-  protocol: "http"
+  domain_name: "api.pxecloud.tk"
+  protocol: "https"
 
 # RethinkDB settings
 rethinkdb:
