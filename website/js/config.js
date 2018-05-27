@@ -1,4 +1,5 @@
 function config(){
-  var config = "http://10.252.2.2:8001";
+  const settings = YAML.load('settings.yml')
+  var config = `${settings.api.protocol}://${settings.api.domain_name}`;
   return config;
 }

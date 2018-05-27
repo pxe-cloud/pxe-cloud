@@ -1,0 +1,21 @@
+# Network Settings
+network:
+  host_ip: 0.0.0.0
+  api_port: 8001
+
+# API settings
+api:
+  domain_name: "10.25.2.2"
+  protocol: "http"
+
+# RethinkDB settings
+rethinkdb:
+  host: 0.0.0.0
+  port: 28015
+  db_name: pxecloud
+
+# Storage settings
+storage:
+  # TODO: Image limit size
+  image_limit_size:
+  path: "./images"
