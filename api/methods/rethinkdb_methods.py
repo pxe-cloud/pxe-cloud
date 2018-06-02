@@ -31,8 +31,8 @@ def close(conn):
 # Create the needed tables
 def setup():
     db_name = rethink_settings["db_name"]
-
     conn = connect()
+
     if db_name not in r.db_list().run(conn):
         r.db_create(db_name).run(conn)
         r.db(db_name).table_create("users", primary_key="username").run(conn)
@@ -40,4 +40,14 @@ def setup():
         r.db(db_name).table_create("groups").run(conn)
         r.db(db_name).table_create("menus").run(conn)
         r.db(db_name).table_create("images").run(conn)
+
+    close(conn)
+
+# Clear a table
+def clear_table(table_name):
+    db_name = rethink_settings["db_name"]
+    conn = connect()
+
+    r.db(db_name).table(table_name).delete().run(conn)
+
     close(conn)

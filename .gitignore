@@ -106,3 +106,6 @@ ENV/
 
 # Images folder
 /images/
+
+# pytest cache
+.pytest_cache
