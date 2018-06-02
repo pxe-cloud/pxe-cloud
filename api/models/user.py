@@ -56,7 +56,7 @@ class User:
             except KeyError:
                 result = r.table("users").insert({
                     "username": username,
-                    "password": encrypt_password(password)
+                    "password": encrypt_password(password),
                     "email": email,
                     "organizations": [],
                     "groups": []
