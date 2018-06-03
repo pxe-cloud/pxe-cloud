@@ -5,6 +5,7 @@
 import pytest
 import sys
 import os
+import importlib
 
 def os_move_to_project_root(initial_os_path):
     """
@@ -50,3 +51,10 @@ def move_to_project_root():
     os.chdir(initial_os_path)
     sys.path[0] = initial_sys_path
 
+
+@pytest.fixture()
+def import_module(request):
+    def import_module_helper(path=None, module=None):
+        return getattr(importlib.import_module(path), module)
+
+    return import_module_helper
