@@ -8,7 +8,7 @@ import rethinkdb as r
 from api.decorators.rethinkdb_decorators import rethinkdb_connection
 
 # Methods imports
-from api.methods.encryption_methods import encrypt_password
+from api.methods.encryption_methods import encrypt_password, check_auth
 
 class User:
     """
@@ -96,6 +96,12 @@ class User:
 
         elif not new_password and not new_email:
             raise ValueError("You need to make some changes!")
+
+        elif check_auth({"username": self.username, "password": new_password}):
+            raise ValueError("You need to provide a different password in order to update it!")
+
+        elif new_email == self.email:
+            raise ValueError("You need to provide a different email in order to update it!")
 
         else:
             to_update = {}
