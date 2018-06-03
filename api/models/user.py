@@ -74,11 +74,7 @@ class User:
                     "groups": []
                 }).run(conn)
 
-                if result["inserted"] == 1:
-                    return True
-
-                else:
-                    return False
+                return result["inserted"] == 1
 
             else:
                 raise ValueError("There's already an user with this username!")
@@ -113,11 +109,7 @@ class User:
 
             result = r.table("users").get(self.username).update(to_update).run(conn)
 
-            if result["replaced"] == 1:
-                return True
-
-            else:
-                return False
+            return result["replaced"] == 1
 
     @rethinkdb_connection
     def delete(self, conn):
@@ -126,11 +118,7 @@ class User:
         """
         result = r.table("users").get(self.username).delete().run(conn)
 
-        if result["deleted"] == 1:
-            return True
-
-        else:
-            return False
+        return result["deleted"] == 1
 
     @rethinkdb_connection
     def add_organization(self, organization_id, conn):
@@ -155,11 +143,7 @@ class User:
                         "organizations": r.row["organizations"].append(organization_id)
                     }).run(conn)
 
-                    if result["replaced"] == 1:
-                        return True
-
-                    else:
-                        return False
+                    return result["replaced"] == 1
 
                 else:
                     raise ValueError("The user is already in the organization!")
@@ -190,11 +174,7 @@ class User:
                         "organizations": r.row["organizations"].delete_at(organization_index)
                     }).run(conn)
 
-                    if result["replaced"] == 1:
-                        return True
-
-                    else:
-                        return False
+                    return result["replaced"] == 1
 
     @rethinkdb_connection
     def add_group(self, group_id, conn):
@@ -219,11 +199,7 @@ class User:
                         "groups": r.row["groups"].append(group_id)
                     }).run(conn)
 
-                    if result["replaced"] == 1:
-                        return True
-
-                    else:
-                        return False
+                    return result["replaced"] == 1
 
                 else:
                     raise ValueError("The user is already in the group!")
@@ -254,8 +230,4 @@ class User:
                         "groups": r.row["groups"].delete_at(group_index)
                     }).run(conn)
 
-                    if result["replaced"] == 1:
-                        return True
-
-                    else:
-                        return False
+                    return result["replaced"] == 1
