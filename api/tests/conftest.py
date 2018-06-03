@@ -31,7 +31,7 @@ def sys_move_to_project_root(initial_sys_path):
         else:
             sys.path[0] = "/".join(sys.path[0].split("/")[:-1])
 
-@pytest.fixture()
+@pytest.fixture(scope="session")
 def move_to_project_root():
     """
     Change the running execution environment to the root of the project
