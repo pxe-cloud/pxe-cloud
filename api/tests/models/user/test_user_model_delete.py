@@ -3,7 +3,7 @@
 
 class TestUserModelDelete:
     """
-    Test all the possible responses and errors of the create() method from the User model
+    Test all the possible responses and errors of the delete() method from the User model
     """
     def test_delete(self, import_module, user):
         """
