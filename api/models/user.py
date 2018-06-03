@@ -16,7 +16,7 @@ class User:
     """
 
     @rethinkdb_connection
-    def get(self, username, conn):
+    def get(self, username, conn, return_user=False):
         """
         Retrieve a specific user from the DB using the username
         """
@@ -34,6 +34,18 @@ class User:
                 self.email = db_user["email"]
                 self.organizations = db_user["organizations"]
                 self.groups = db_user["groups"]
+
+                if return_user:
+                    return {
+                        "username": self.username,
+                        "password": self.password,
+                        "email": self.email,
+                        "organizations": self.organizations,
+                        "groups": self.groups
+                    }
+
+                else:
+                    return self
 
     @rethinkdb_connection
     def create(self, username, password, email, conn):
@@ -76,10 +88,10 @@ class User:
         """
         Update a specific user from the DB
         """
-        if not isinstance(new_password, str) or not isinstance(new_password, type(None)):
+        if not isinstance(new_password, str) and not isinstance(new_password, type(None)):
             raise TypeError("Password needs to be a string!")
 
-        elif not isinstance(new_email, str) or not isinstance(new_email, type(None)):
+        elif not isinstance(new_email, str) and not isinstance(new_email, type(None)):
             raise TypeError("Email needs to be a string!")
 
         elif not new_password and not new_email:
