@@ -95,7 +95,7 @@ class User:
             raise TypeError("Email needs to be a string!")
 
         elif not new_password and not new_email:
-            raise ValueError("You need make some changes!")
+            raise ValueError("You need to make some changes!")
 
         else:
             to_update = {}
@@ -112,6 +112,19 @@ class User:
 
             else:
                 return False
+
+    @rethinkdb_connection
+    def delete(self, conn):
+        """
+        Delete a specific user from the DB
+        """
+        result = r.table("users").get(self.username).delete().run(conn)
+
+        if result["deleted"] == 1:
+            return True
+
+        else:
+            return False
 
     @rethinkdb_connection
     def add_organization(self, organization_id, conn):
