@@ -49,8 +49,8 @@ class Organization:
         if not isinstance(name, str):
             raise TypeError("Name needs to be a string!")
 
-        elif not isinstance(description, str):
-            raise TypeError("Description needs to be a string!")
+        elif not isinstance(description, str) or not None:
+            raise TypeError("Description needs to be a string or be empty!")
 
         else:
             result = r.table("organizations").insert({
