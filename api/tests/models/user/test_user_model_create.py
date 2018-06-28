@@ -17,7 +17,7 @@ class TestUserModelCreate:
 
     def test_create_username_non_string(self, import_module, user):
         """
-        Try creating an user without passing an string in the username
+        Try creating an user without passing a string in the username
         """
         User = import_module(path="api.models.user", module="User")
 
@@ -28,7 +28,7 @@ class TestUserModelCreate:
 
     def test_create_password_non_string(self, import_module, user):
         """
-        Try creating an user without passing an string in the password
+        Try creating an user without passing a string in the password
         """
         User = import_module(path="api.models.user", module="User")
 
@@ -39,7 +39,7 @@ class TestUserModelCreate:
 
     def test_create_email_non_string(self, import_module, user):
         """
-        Try creating an user without passing an string in the email
+        Try creating an user without passing a string in the email
         """
         User = import_module(path="api.models.user", module="User")
 
