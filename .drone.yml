@@ -1,0 +1,8 @@
+pipeline:
+  build:
+    image: python:3.6-alpine
+    commands:
+      - pip install -r api/requirements.txt
+      - pip install -r api/tests/requirements.txt
+      - python -c "from api.methods.rethinkdb_methods import setup; setup()"
+      - pytest -q api/tests
