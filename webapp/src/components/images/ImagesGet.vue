@@ -5,7 +5,7 @@
             
                 <div class="container">
                     <h2 class="text-left mb-4">{{ msg }} 
-                      <b-btn to="/imagesadd" variant="primary" class="float-right">Add new image</b-btn> 
+                      <b-btn to="/imagesadd" variant="outline-success" class="float-right">Add new image</b-btn> 
                     </h2>
                     <!-- ------- alert --------------- -->
                     <b-alert v-if='deleteImg != null && deleteImg.includes("Successfully")' variant="success" show> {{ deleteImg }} </b-alert>
@@ -19,10 +19,10 @@
                         <b-card no-body class="mb-1" v-for=" (img, index) in  searchImages ">
                           <b-card-header header-tag="header" class="p-1 " role="tab">
                             <b-btn  href="#" v-b-toggle="'accordion'+index" class="col-10 text-left" variant="light"> {{ img.title }} </b-btn>
-                            <router-link to="/imagesedit" class="material-icons align-middle" >edit</router-link>
+                            <router-link :to="{name:'ImagesEdit', params: {id: img.id}}" class="material-icons align-middle" >edit</router-link>
                             
                             <!-- ----------modal alert confirm, delete--------- -->
-                            <span @click="showModal(index)" class="material-icons align-middle">delete</span>
+                            <span  @click="showModal(index)" class="material-icons align-middle cursorPoint">delete</span>
                             <b-modal ref="myModalRef" hide-footer>
                               <div class="d-block text-center">
                                 Are you sure you want to erase the image {{ img.title }} 
@@ -85,7 +85,7 @@ export default {
           setTimeout(function () {
             this.deleteImg = null
             this.getImages()
-          }.bind(this), 5000)
+          }.bind(this), 2000)
         })
     },
     showModal (index) {
@@ -107,5 +107,8 @@ export default {
 <style>
 .bg-home{
   background-color: #e6e6e6;
+}
+.cursorPoint{
+  cursor: pointer;
 }
 </style>
